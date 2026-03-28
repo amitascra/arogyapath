@@ -1,0 +1,280 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "lab_order",
+  "lab_order_item",
+  "patient",
+  "patient_name",
+  "column_break_1",
+  "test",
+  "sample_collection",
+  "branch",
+  "department",
+  "section_break_2",
+  "entered_by",
+  "entered_at",
+  "validation_status",
+  "column_break_3",
+  "approved_by_tech",
+  "approved_at_tech",
+  "approved_by_path",
+  "approved_at_path",
+  "section_break_4",
+  "has_critical_value",
+  "critical_notified",
+  "critical_notified_to",
+  "section_break_5",
+  "is_amended",
+  "amendment_reason",
+  "section_break_6",
+  "items",
+  "section_break_7",
+  "clinical_comment"
+ ],
+ "fields": [
+  {
+   "default": "RES-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RES-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lab_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lab Order",
+   "options": "Lab Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lab_order_item",
+   "fieldtype": "Data",
+   "label": "Lab Order Item (Row)",
+   "description": "Row name of the order item"
+  },
+  {
+   "fetch_from": "lab_order.patient",
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "label": "Patient",
+   "options": "Patient",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "lab_order.patient_name",
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Patient Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Test",
+   "options": "Lab Test Master",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lab_order.sample_collection",
+   "fieldname": "sample_collection",
+   "fieldtype": "Link",
+   "label": "Sample Collection",
+   "options": "Sample Collection",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "lab_order.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "test.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Validation Chain"
+  },
+  {
+   "fieldname": "entered_by",
+   "fieldtype": "Link",
+   "label": "Entered By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "entered_at",
+   "fieldtype": "Datetime",
+   "label": "Entered At"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "validation_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Validation Status",
+   "options": "Draft\nTech Approved\nPathologist Approved\nReleased"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approved_by_tech",
+   "fieldtype": "Link",
+   "label": "Approved By (Technician)",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "approved_at_tech",
+   "fieldtype": "Datetime",
+   "label": "Tech Approval Time"
+  },
+  {
+   "fieldname": "approved_by_path",
+   "fieldtype": "Link",
+   "label": "Approved By (Pathologist)",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "approved_at_path",
+   "fieldtype": "Datetime",
+   "label": "Pathologist Approval Time"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Critical Value Alert"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_critical_value",
+   "fieldtype": "Check",
+   "label": "Has Critical Value",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.has_critical_value==1",
+   "fieldname": "critical_notified",
+   "fieldtype": "Check",
+   "label": "Critical Value Notified"
+  },
+  {
+   "depends_on": "eval:doc.has_critical_value==1",
+   "fieldname": "critical_notified_to",
+   "fieldtype": "Data",
+   "label": "Notified To",
+   "description": "Name/number of person notified"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break",
+   "label": "Amendment"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_amended",
+   "fieldtype": "Check",
+   "label": "Is Amended",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.is_amended==1",
+   "fieldname": "amendment_reason",
+   "fieldtype": "Small Text",
+   "label": "Amendment Reason"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break",
+   "label": "Result Values"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Result Items",
+   "options": "Lab Result Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break",
+   "label": "Pathologist Comment"
+  },
+  {
+   "fieldname": "clinical_comment",
+   "fieldtype": "Text",
+   "label": "Clinical Comment",
+   "description": "Pathologist interpretation — printed on report"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Result",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Technician",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist",
+   "write": 1
+  }
+ ],
+ "search_fields": "patient,patient_name,test,validation_status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient_name",
+ "track_changes": 1
+}

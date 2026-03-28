@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "parameter_name",
+  "parameter_code",
+  "unit",
+  "result_type",
+  "column_break_1",
+  "decimal_places",
+  "sort_order",
+  "sub_heading",
+  "print_bold",
+  "options_list",
+  "is_calculated",
+  "calculation_formula"
+ ],
+ "fields": [
+  {
+   "fieldname": "parameter_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Parameter Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parameter_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Parameter Code",
+   "description": "Short code: HB, NA, K"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "Lab Test UOM",
+   "description": "Select unit from master (e.g., g/dL, mEq/L, mg/dL)"
+  },
+  {
+   "default": "Numeric",
+   "fieldname": "result_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result Type",
+   "options": "Numeric\nText\nPositive-Negative\nMultiple Choice\nBoolean\nRatio"
+  },
+  {
+   "depends_on": "eval:doc.result_type=='Multiple Choice'",
+   "fieldname": "options_list",
+   "fieldtype": "Small Text",
+   "label": "Options",
+   "description": "One option per line for Multiple Choice result type"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "2",
+   "depends_on": "eval:doc.result_type=='Numeric' || doc.result_type=='Ratio'",
+   "fieldname": "decimal_places",
+   "fieldtype": "Int",
+   "label": "Decimal Places"
+  },
+  {
+   "default": "0",
+   "fieldname": "sort_order",
+   "fieldtype": "Int",
+   "label": "Sort Order"
+  },
+  {
+   "fieldname": "sub_heading",
+   "fieldtype": "Data",
+   "label": "Sub Heading",
+   "description": "Group heading on report (e.g., Complete Blood Count)"
+  },
+  {
+   "default": "0",
+   "fieldname": "print_bold",
+   "fieldtype": "Check",
+   "label": "Print Bold"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_calculated",
+   "fieldtype": "Check",
+   "label": "Is Calculated",
+   "description": "Auto-compute from other parameter values (e.g., LDL = TC - HDL - TG/5)"
+  },
+  {
+   "depends_on": "eval:doc.is_calculated==1",
+   "fieldname": "calculation_formula",
+   "fieldtype": "Small Text",
+   "label": "Calculation Formula",
+   "description": "Python expression using parameter codes as variables (e.g., TC - HDL - TG/5)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Test Parameter",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

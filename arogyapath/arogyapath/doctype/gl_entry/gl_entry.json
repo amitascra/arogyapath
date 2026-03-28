@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-03-28 16:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "account",
+  "party_type",
+  "party",
+  "column_break_1",
+  "debit",
+  "credit",
+  "against",
+  "section_break_voucher",
+  "voucher_type",
+  "voucher_no",
+  "column_break_voucher",
+  "pathology_lab",
+  "branch",
+  "section_break_details",
+  "remarks",
+  "is_cancelled"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Select",
+   "label": "Party Type",
+   "options": "\nPatient\nSupplier\nDoctor\nEmployee\nCorporate Account"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "label": "Party",
+   "options": "party_type"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "debit",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Debit",
+   "precision": "2"
+  },
+  {
+   "fieldname": "credit",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Credit",
+   "precision": "2"
+  },
+  {
+   "fieldname": "against",
+   "fieldtype": "Data",
+   "label": "Against Account"
+  },
+  {
+   "fieldname": "section_break_voucher",
+   "fieldtype": "Section Break",
+   "label": "Voucher Details"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Voucher Type",
+   "options": "Lab Invoice\nPurchase Invoice\nPayment Entry\nSales Return\nPurchase Return",
+   "reqd": 1
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Voucher No",
+   "options": "voucher_type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_voucher",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pathology_lab",
+   "fieldtype": "Link",
+   "label": "Pathology Lab",
+   "options": "Pathology Lab",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cancelled",
+   "fieldtype": "Check",
+   "label": "Is Cancelled"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "GL Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

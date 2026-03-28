@@ -1,0 +1,261 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "patient_id",
+  "full_name",
+  "date_of_birth",
+  "age",
+  "column_break_1",
+  "gender",
+  "blood_group",
+  "mobile",
+  "email",
+  "section_break_gst",
+  "gst_category",
+  "gstin",
+  "pan",
+  "column_break_gst",
+  "customer_address",
+  "section_break_2",
+  "address",
+  "city",
+  "state",
+  "pincode",
+  "section_break_3",
+  "id_type",
+  "id_number",
+  "column_break_4",
+  "abha_id",
+  "section_break_5",
+  "patient_notes",
+  "section_break_6",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "default": "PT-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PT-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Data",
+   "label": "Patient ID (UHID)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Birth",
+   "reqd": 1
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Gender",
+   "options": "Male\nFemale\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "reqd": 1,
+   "description": "Primary contact, used for WhatsApp delivery"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_gst",
+   "fieldtype": "Section Break",
+   "label": "GST Details"
+  },
+  {
+   "default": "Unregistered",
+   "fieldname": "gst_category",
+   "fieldtype": "Select",
+   "label": "GST Category",
+   "options": "Unregistered\nRegistered Regular\nRegistered Composition\nSEZ\nOverseas",
+   "description": "Determines GST applicability for B2B billing"
+  },
+  {
+   "fieldname": "gstin",
+   "fieldtype": "Data",
+   "label": "GSTIN",
+   "description": "15-digit GST identification number"
+  },
+  {
+   "fieldname": "pan",
+   "fieldtype": "Data",
+   "label": "PAN",
+   "description": "10-digit Permanent Account Number"
+  },
+  {
+   "fieldname": "column_break_gst",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "label": "Billing Address",
+   "options": "Address",
+   "description": "Default billing address for GST invoices"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Address Details"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "label": "State",
+   "options": "Andhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChhattisgarh\nGoa\nGujarat\nHaryana\nHimachal Pradesh\nJharkhand\nKarnataka\nKerala\nMadhya Pradesh\nMaharashtra\nManipur\nMeghalaya\nMizoram\nNagaland\nOdisha\nPunjab\nRajasthan\nSikkim\nTamil Nadu\nTelangana\nTripura\nUttar Pradesh\nUttarakhand\nWest Bengal\nAndaman and Nicobar Islands\nChandigarh\nDadra and Nagar Haveli and Daman and Diu\nDelhi\nJammu and Kashmir\nLadakh\nLakshadweep\nPuducherry"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Identity Details"
+  },
+  {
+   "fieldname": "id_type",
+   "fieldtype": "Select",
+   "label": "ID Type",
+   "options": "\nAadhaar\nPAN\nPassport\nDriving License\nVoter ID"
+  },
+  {
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "ID Number"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "abha_id",
+   "fieldtype": "Data",
+   "label": "ABHA ID",
+   "description": "ABDM ABHA number (future)"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "patient_notes",
+   "fieldtype": "Text",
+   "label": "Patient Notes",
+   "description": "Allergies, special instructions"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Patient",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Reception",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "full_name,mobile,patient_id",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name",
+ "track_changes": 1
+}

@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:test_code",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "test_name",
+  "test_code",
+  "department",
+  "sample_type",
+  "column_break_1",
+  "method",
+  "tat_hours",
+  "cost",
+  "is_active",
+  "section_break_2",
+  "hsn_sac_code",
+  "is_gst_exempt",
+  "report_format",
+  "column_break_3",
+  "is_outsourced",
+  "outsource_lab",
+  "outsource_cost",
+  "section_break_4",
+  "methodology_note",
+  "section_break_5",
+  "parameters",
+  "section_break_6",
+  "reference_ranges"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Code",
+   "reqd": 1,
+   "unique": 1,
+   "description": "Short unique code: CBC, LFT, HBA1C"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sample_type",
+   "fieldtype": "Link",
+   "label": "Sample Type",
+   "options": "Sample Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Data",
+   "label": "Method",
+   "description": "e.g., ELISA, Colorimetric, Flow Cytometry"
+  },
+  {
+   "fieldname": "tat_hours",
+   "fieldtype": "Int",
+   "label": "TAT Hours",
+   "description": "Overrides department default"
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "label": "Cost (MRP)",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Billing & GST"
+  },
+  {
+   "default": "999316",
+   "fieldname": "hsn_sac_code",
+   "fieldtype": "Data",
+   "label": "HSN/SAC Code"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_gst_exempt",
+   "fieldtype": "Check",
+   "label": "Is GST Exempt",
+   "description": "Checked = exempt (retail patients). Unchecked = 18% GST (corporate)"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "report_format",
+   "fieldtype": "Select",
+   "label": "Report Format",
+   "options": "Standard\nMicroscopy\nCulture\nCytology"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_outsourced",
+   "fieldtype": "Check",
+   "label": "Is Outsourced",
+   "description": "Sent to reference lab"
+  },
+  {
+   "depends_on": "eval:doc.is_outsourced==1",
+   "fieldname": "outsource_lab",
+   "fieldtype": "Data",
+   "label": "Outsource Lab"
+  },
+  {
+   "depends_on": "eval:doc.is_outsourced==1",
+   "fieldname": "outsource_cost",
+   "fieldtype": "Currency",
+   "label": "Outsource Cost"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Methodology"
+  },
+  {
+   "fieldname": "methodology_note",
+   "fieldtype": "Text",
+   "label": "Methodology Note",
+   "description": "Printed on report"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break",
+   "label": "Parameters"
+  },
+  {
+   "fieldname": "parameters",
+   "fieldtype": "Table",
+   "label": "Test Parameters",
+   "options": "Test Parameter"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break",
+   "label": "Reference Ranges"
+  },
+  {
+   "fieldname": "reference_ranges",
+   "fieldtype": "Table",
+   "label": "Reference Ranges",
+   "options": "Reference Range"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Test Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  },
+  {
+   "read": 1,
+   "role": "Lab Reception"
+  }
+ ],
+ "search_fields": "test_name,test_code,department",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "test_name",
+ "track_changes": 1
+}

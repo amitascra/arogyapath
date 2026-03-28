@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "parameter",
+  "observed_value",
+  "column_break_1",
+  "target_mean",
+  "target_sd",
+  "z_score",
+  "westgard_flag"
+ ],
+ "fields": [
+  {
+   "fieldname": "parameter",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Parameter",
+   "reqd": 1
+  },
+  {
+   "fieldname": "observed_value",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Observed Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_mean",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Target Mean"
+  },
+  {
+   "fieldname": "target_sd",
+   "fieldtype": "Float",
+   "label": "Target SD"
+  },
+  {
+   "fieldname": "z_score",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Z-Score",
+   "read_only": 1,
+   "description": "= (observed - mean) / SD"
+  },
+  {
+   "default": "Pass",
+   "fieldname": "westgard_flag",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Westgard Flag",
+   "options": "Pass\n1-2s Warning\n1-3s Reject\n2-2s Reject\nR-4s Reject\n4-1s Reject\n10x Reject"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "QC Result Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

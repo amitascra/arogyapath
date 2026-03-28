@@ -1,0 +1,361 @@
+{% set order = frappe.get_doc("Lab Order", doc.lab_order) if doc.lab_order else None %}
+{% set patient = frappe.get_doc("Patient", doc.patient) if doc.patient else None %}
+{% set branch = frappe.get_doc("Lab Branch", doc.branch) if doc.branch else None %}
+{% set signed_user = frappe.get_doc("User", doc.signed_by) if doc.signed_by else None %}
+{% set signature = frappe.get_all("Pathologist Signature", filters={"pathologist": doc.signed_by, "is_default": 1}, fields=["signature_image", "designation", "qualification", "registration_number"], limit=1) %}
+{% set sig = signature[0] if signature else None %}
+{% set results = frappe.get_all("Lab Result", filters={"lab_order": doc.lab_order, "validation_status": "Released"}, fields=["name", "test", "department", "clinical_comment", "is_amended", "amendment_reason"]) if doc.lab_order else [] %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 9pt; color: #1a1a1a; background: #fff; }
+  .page { width: 100%; max-width: 210mm; margin: 0 auto; padding: 6mm 8mm; }
+
+  /* Header */
+  .report-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #2c5282; padding-bottom: 8px; margin-bottom: 6px; }
+  .lab-brand { flex: 1; }
+  .lab-name { font-size: 17pt; font-weight: bold; color: #2c5282; letter-spacing: 0.5px; }
+  .lab-sub { font-size: 8pt; color: #555; margin-top: 2px; line-height: 1.5; }
+  .lab-logo { max-height: 65px; max-width: 130px; margin-bottom: 3px; }
+  .report-meta { text-align: right; }
+  .report-meta .report-title { font-size: 13pt; font-weight: bold; color: #2c5282; text-transform: uppercase; letter-spacing: 1px; }
+  .report-meta .report-no { font-size: 8pt; margin-top: 3px; }
+  .report-meta .report-date { font-size: 8pt; color: #555; }
+  .nabl-badge { display: inline-block; background: #ebf8ff; border: 1px solid #90cdf4; color: #2b6cb0; padding: 2px 8px; border-radius: 3px; font-size: 7.5pt; font-weight: bold; margin-top: 4px; }
+  .watermark { position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 60pt; color: rgba(44,82,130,0.05); font-weight: bold; white-space: nowrap; pointer-events: none; z-index: 0; }
+
+  /* Patient info */
+  .patient-bar { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin: 6px 0; }
+  .info-cell { background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 7px; border-radius: 3px; }
+  .info-cell .cell-label { font-size: 7pt; color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
+  .info-cell .cell-value { font-weight: bold; font-size: 9pt; color: #1a1a1a; margin-top: 1px; }
+  .info-cell .cell-value.highlight { color: #2c5282; }
+
+  /* Accession bar */
+  .accession-bar { background: #2c5282; color: #fff; padding: 4px 10px; border-radius: 3px; font-size: 8pt; margin: 4px 0; display: flex; gap: 20px; flex-wrap: wrap; }
+  .accession-bar b { color: #bee3f8; }
+
+  /* Department heading */
+  .dept-heading { background: linear-gradient(90deg, #2c5282, #4a7ab5); color: #fff; padding: 4px 10px; margin: 8px 0 3px 0; font-size: 9.5pt; font-weight: bold; border-radius: 3px; }
+
+  /* Result table */
+  .result-table { width: 100%; border-collapse: collapse; margin-bottom: 4px; font-size: 8.5pt; }
+  .result-table thead tr { background: #ebf8ff; }
+  .result-table thead th { padding: 4px 6px; text-align: left; font-size: 8pt; color: #2c5282; border-bottom: 1px solid #90cdf4; font-weight: 600; }
+  .result-table tbody td { padding: 3px 6px; border-bottom: 1px solid #f0f4f8; vertical-align: top; }
+  .result-table tbody tr:nth-child(even) { background: #fafbfc; }
+
+  /* Sub-heading row */
+  .sub-heading-row td { background: #f0f4f8; font-weight: bold; font-size: 8pt; color: #2c5282; padding: 2px 6px; }
+
+  /* Flags */
+  .flag { display: inline-block; padding: 1px 5px; border-radius: 2px; font-size: 7.5pt; font-weight: bold; }
+  .flag-high { background: #fed7d7; color: #c53030; }
+  .flag-low { background: #feebc8; color: #c05621; }
+  .flag-critical { background: #c53030; color: #fff; }
+  .flag-normal { background: #c6f6d5; color: #276749; }
+  .flag-abnormal { background: #e9d8fd; color: #553c9a; }
+
+  /* Result value */
+  .result-value { font-weight: bold; font-size: 10pt; }
+  .result-value.abnormal { color: #c53030; }
+  .result-value.critical { color: #fff; background: #c53030; padding: 0 4px; border-radius: 2px; }
+
+  /* Clinical comment */
+  .clinical-comment { background: #fffff0; border-left: 3px solid #d69e2e; padding: 6px 10px; margin: 4px 0; font-size: 8.5pt; font-style: italic; }
+  .clinical-comment .comment-label { font-size: 7.5pt; font-weight: bold; color: #975a16; text-transform: uppercase; margin-bottom: 3px; }
+
+  /* Amendment notice */
+  .amendment-notice { background: #fff5f5; border: 1px solid #fc8181; padding: 5px 10px; margin: 3px 0; font-size: 8pt; color: #c53030; border-radius: 3px; }
+
+  /* Signature section */
+  .signature-section { margin-top: 12px; border-top: 1px solid #e2e8f0; padding-top: 8px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .sig-block { text-align: center; }
+  .sig-image { max-height: 50px; max-width: 120px; margin-bottom: 3px; }
+  .sig-name { font-weight: bold; font-size: 9pt; color: #2c5282; }
+  .sig-desig { font-size: 7.5pt; color: #555; }
+  .sig-reg { font-size: 7.5pt; color: #888; }
+  .qr-block { text-align: center; }
+  .qr-block img { max-height: 70px; max-width: 70px; }
+  .qr-block .qr-label { font-size: 7pt; color: #888; margin-top: 2px; }
+
+  /* Footer */
+  .report-footer { margin-top: 8px; border-top: 2px solid #2c5282; padding-top: 5px; text-align: center; font-size: 7pt; color: #888; }
+  .report-footer .disclaimer { margin-top: 3px; font-style: italic; }
+
+  /* Not valid watermark for non-released */
+  .not-released-banner { background: #fed7d7; color: #c53030; font-weight: bold; text-align: center; padding: 5px; font-size: 11pt; margin: 6px 0; border: 2px solid #c53030; border-radius: 3px; }
+
+  @media print {
+    body { font-size: 8.5pt; }
+    .page { padding: 3mm 5mm; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="watermark">ArogyaPath</div>
+<div class="page">
+
+  {% if doc.delivery_status == "Pending" %}
+  <div class="not-released-banner">⚠ PRELIMINARY REPORT — NOT FOR CLINICAL USE ⚠</div>
+  {% endif %}
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="lab-brand">
+      {% if branch and branch.logo %}
+        <img class="lab-logo" src="{{ branch.logo }}" alt="Logo">
+      {% endif %}
+      <div class="lab-name">{{ branch.branch_name if branch else "ArogyaPath Diagnostics" }}</div>
+      <div class="lab-sub">
+        {{ branch.address if branch else "" }}
+        {% if branch and branch.city %}, {{ branch.city }}{% endif %}
+        {% if branch and branch.pincode %} - {{ branch.pincode }}{% endif %}
+        {% if branch and branch.phone %} | ☎ {{ branch.phone }}{% endif %}
+        {% if branch and branch.email %} | ✉ {{ branch.email }}{% endif %}
+      </div>
+      {% if branch and branch.nabl_number %}
+        <div class="nabl-badge">NABL Accredited: {{ branch.nabl_number }}
+          {% if branch.nabl_valid_upto %} (Valid: {{ frappe.utils.formatdate(branch.nabl_valid_upto) }}){% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="report-meta">
+      <div class="report-title">Lab Report</div>
+      <div class="report-no">Report No: <b>{{ doc.name }}</b></div>
+      <div class="report-date">Date: <b>{{ frappe.utils.formatdate(doc.report_date) }}</b></div>
+      {% if order %}
+        <div class="report-date">Order: <b>{{ order.name }}</b>
+          {% if order.priority == "STAT" %}
+            <span style="color:#c53030; font-weight:bold;"> [STAT]</span>
+          {% elif order.priority == "Urgent" %}
+            <span style="color:#c05621; font-weight:bold;"> [URGENT]</span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ACCESSION BAR -->
+  {% if order and order.sample_collection %}
+    {% set sc = frappe.get_doc("Sample Collection", order.sample_collection) %}
+    <div class="accession-bar">
+      <span>Accession: <b>{{ order.sample_collection }}</b></span>
+      <span>Collected: <b>{{ frappe.utils.formatdate(sc.collection_date) }} {{ sc.collection_time or "" }}</b></span>
+      {% if sc.collected_by %}<span>By: <b>{{ frappe.db.get_value("User", sc.collected_by, "full_name") or sc.collected_by }}</b></span>{% endif %}
+      <span>Received: <b>{{ frappe.utils.formatdate(sc.received_at) if sc.received_at else "—" }}</b></span>
+    </div>
+  {% endif %}
+
+  <!-- PATIENT INFO -->
+  <div class="patient-bar">
+    <div class="info-cell">
+      <div class="cell-label">Patient Name</div>
+      <div class="cell-value highlight">{{ patient.full_name if patient else doc.patient }}</div>
+      {% if patient %}<div style="font-size:7.5pt; color:#555;">UHID: {{ doc.patient }}</div>{% endif %}
+    </div>
+    <div class="info-cell">
+      <div class="cell-label">Age / Gender</div>
+      <div class="cell-value">
+        {% if patient and patient.date_of_birth %}
+          {{ frappe.utils.age_in_years(patient.date_of_birth) }} Yrs
+        {% elif patient and patient.age %}
+          {{ patient.age }} Yrs
+        {% else %}—{% endif %}
+        / {{ patient.gender if patient else "—" }}
+      </div>
+      {% if patient and patient.blood_group %}
+        <div style="font-size:7.5pt; color:#555;">Blood Group: {{ patient.blood_group }}</div>
+      {% endif %}
+    </div>
+    <div class="info-cell">
+      <div class="cell-label">Referring Doctor</div>
+      <div class="cell-value">{{ order.referred_by if order and order.referred_by else "Self" }}</div>
+      {% if order and order.clinical_notes %}
+        <div style="font-size:7.5pt; color:#555; font-style:italic;">{{ order.clinical_notes }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- RESULTS BY DEPARTMENT -->
+  {% set dept_seen = [] %}
+  {% for result_meta in results %}
+    {% set result = frappe.get_doc("Lab Result", result_meta.name) %}
+    {% set test_doc = frappe.get_doc("Lab Test Master", result.test) if result.test else None %}
+
+    <!-- Amendment notice -->
+    {% if result.is_amended %}
+      <div class="amendment-notice">⚠ This result was amended. Reason: {{ result.amendment_reason or "Not specified" }}</div>
+    {% endif %}
+
+    <!-- Department heading (show once per department) -->
+    {% if result.department and result.department not in dept_seen %}
+      {% set _ = dept_seen.append(result.department) %}
+      <div class="dept-heading">{{ result.department }}</div>
+    {% endif %}
+
+    <!-- Test header sub-line -->
+    <div style="font-size:8pt; font-weight:bold; margin: 4px 0 2px 0; color:#2c5282;">
+      {{ test_doc.test_name if test_doc else result.test }}
+      {% if test_doc and test_doc.method %}<span style="font-weight:normal; color:#888;"> — Method: {{ test_doc.method }}</span>{% endif %}
+    </div>
+
+    <!-- Parameters table -->
+    <table class="result-table">
+      <thead>
+        <tr>
+          <th style="width:35%">Parameter</th>
+          <th style="width:15%; text-align:center">Result</th>
+          <th style="width:10%; text-align:center">Unit</th>
+          <th style="width:25%; text-align:center">Reference Range</th>
+          <th style="width:8%; text-align:center">Flag</th>
+          <th style="width:7%; text-align:center">Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set last_subheading = [] %}
+        {% for item in result.items %}
+          {% if item.parameter_name %}
+            <!-- Sub-heading row if this parameter has one -->
+            {% if test_doc %}
+              {% for param in test_doc.parameters %}
+                {% if param.parameter_name == item.parameter_name and param.sub_heading and param.sub_heading not in last_subheading %}
+                  {% set _ = last_subheading.append(param.sub_heading) %}
+                  <tr class="sub-heading-row"><td colspan="6">{{ param.sub_heading }}</td></tr>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% set is_critical = item.flag in ("Critical Low", "Critical High") %}
+            {% set is_abnormal = item.flag in ("Low", "High", "Abnormal") %}
+            <tr>
+              <td>
+                {% if test_doc %}
+                  {% for param in test_doc.parameters %}
+                    {% if param.parameter_name == item.parameter_name and param.print_bold %}
+                      <b>{{ item.parameter_name }}</b>
+                    {% elif param.parameter_name == item.parameter_name %}
+                      {{ item.parameter_name }}
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {{ item.parameter_name }}
+                {% endif %}
+              </td>
+              <td style="text-align:center">
+                <span class="result-value {% if is_critical %}critical{% elif is_abnormal %}abnormal{% endif %}">
+                  {{ item.result_value or "—" }}
+                </span>
+              </td>
+              <td style="text-align:center; font-size:8pt; color:#555;">{{ item.unit or "—" }}</td>
+              <td style="text-align:center; font-size:8pt; color:#555;">
+                {% if item.reference_range_text %}
+                  {{ item.reference_range_text }}
+                {% elif item.normal_min and item.normal_max %}
+                  {{ item.normal_min }} – {{ item.normal_max }}
+                {% else %}—{% endif %}
+              </td>
+              <td style="text-align:center">
+                {% if item.flag and item.flag != "Normal" %}
+                  <span class="flag
+                    {% if is_critical %}flag-critical
+                    {% elif item.flag in ("High",) %}flag-high
+                    {% elif item.flag in ("Low",) %}flag-low
+                    {% else %}flag-abnormal{% endif %}">
+                    {{ item.flag }}
+                  </span>
+                {% else %}
+                  <span class="flag flag-normal">N</span>
+                {% endif %}
+              </td>
+              <td style="text-align:center; font-size:7.5pt; color:#888;">{{ item.method or "" }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Clinical comment -->
+    {% if result.clinical_comment %}
+      <div class="clinical-comment">
+        <div class="comment-label">Pathologist's Interpretation</div>
+        {{ result.clinical_comment }}
+      </div>
+    {% endif %}
+
+  {% endfor %}
+
+  {% if not results %}
+    <div style="text-align:center; color:#888; padding:20px; font-style:italic;">No released results found for this report.</div>
+  {% endif %}
+
+  <!-- METHODOLOGY NOTE -->
+  {% set method_notes = [] %}
+  {% for result_meta in results %}
+    {% set td = frappe.get_doc("Lab Test Master", result_meta.test) if result_meta.test else None %}
+    {% if td and td.methodology_note and td.methodology_note not in method_notes %}
+      {% set _ = method_notes.append(td.methodology_note) %}
+    {% endif %}
+  {% endfor %}
+  {% if method_notes %}
+    <div style="margin-top:6px; font-size:7.5pt; color:#555; border-top:1px dotted #ddd; padding-top:4px;">
+      <b>Methodology:</b>
+      {% for note in method_notes %}{{ note }}{% if not loop.last %}; {% endif %}{% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- SIGNATURE SECTION -->
+  <div class="signature-section">
+    <div style="font-size:8pt; color:#555; max-width:300px;">
+      <div>Report generated: {{ frappe.utils.format_datetime(frappe.utils.now_datetime()) }}</div>
+      {% if doc.report_url_token %}
+        <div style="margin-top:3px;">Verify this report at: <b>{{ frappe.db.get_single_value("Lab Settings", "report_portal_url") or "" }}/report/{{ doc.report_url_token }}</b></div>
+      {% endif %}
+      <div style="color:#c05621; font-style:italic; margin-top:3px;">
+        H = High &nbsp;|&nbsp; L = Low &nbsp;|&nbsp; N = Normal &nbsp;|&nbsp; Critical values shown in red
+      </div>
+    </div>
+
+    {% if doc.qr_code %}
+    <div class="qr-block">
+      <img src="{{ doc.qr_code }}" alt="QR">
+      <div class="qr-label">Scan to verify</div>
+    </div>
+    {% endif %}
+
+    <div class="sig-block">
+      {% if sig and sig.signature_image %}
+        <img class="sig-image" src="{{ sig.signature_image }}" alt="Signature">
+        <br>
+      {% endif %}
+      <div class="sig-name">{{ signed_user.full_name if signed_user else doc.signed_by }}</div>
+      {% if sig %}
+        <div class="sig-desig">{{ sig.designation }}</div>
+        <div class="sig-desig">{{ sig.qualification }}</div>
+        {% if sig.registration_number %}
+          <div class="sig-reg">Reg. No: {{ sig.registration_number }}</div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div>{{ branch.branch_name if branch else "ArogyaPath Diagnostics" }}
+      {% if branch and branch.address %} | {{ branch.address }}{% endif %}
+      {% if branch and branch.phone %} | Tel: {{ branch.phone }}{% endif %}
+      {% if branch and branch.email %} | {{ branch.email }}{% endif %}
+    </div>
+    <div class="disclaimer">
+      This report is electronically generated. Results should be interpreted in clinical context.
+      For queries, contact the laboratory. This report is strictly confidential.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

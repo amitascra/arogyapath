@@ -1,0 +1,228 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 14:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "item_code",
+  "item_name",
+  "item_group",
+  "column_break_1",
+  "stock_uom",
+  "is_stock_item",
+  "is_purchase_item",
+  "is_sales_item",
+  "section_break_description",
+  "description",
+  "section_break_purchase",
+  "default_supplier",
+  "lead_time_days",
+  "min_order_qty",
+  "column_break_purchase",
+  "last_purchase_rate",
+  "standard_rate",
+  "section_break_inventory",
+  "opening_stock",
+  "valuation_rate",
+  "section_break_tax",
+  "gst_hsn_code",
+  "is_nil_exempt",
+  "section_break_status",
+  "disabled"
+ ],
+ "fields": [
+  {
+   "default": "ITEM-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "ITEM-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "label": "Item Code",
+   "description": "Manufacturer code or internal code"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_group",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Item Group",
+   "options": "Reagents\nConsumables\nEquipment\nServices\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Unit",
+   "fieldname": "stock_uom",
+   "fieldtype": "Select",
+   "label": "Stock UOM",
+   "options": "Unit\nBox\nPack\nBottle\nLiter\nKg\nGram\nVial",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_stock_item",
+   "fieldtype": "Check",
+   "label": "Is Stock Item"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_purchase_item",
+   "fieldtype": "Check",
+   "label": "Is Purchase Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sales_item",
+   "fieldtype": "Check",
+   "label": "Is Sales Item"
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_purchase",
+   "fieldtype": "Section Break",
+   "label": "Purchase Details"
+  },
+  {
+   "fieldname": "default_supplier",
+   "fieldtype": "Link",
+   "label": "Default Supplier",
+   "options": "Supplier"
+  },
+  {
+   "default": "7",
+   "fieldname": "lead_time_days",
+   "fieldtype": "Int",
+   "label": "Lead Time (Days)"
+  },
+  {
+   "default": "1",
+   "fieldname": "min_order_qty",
+   "fieldtype": "Float",
+   "label": "Minimum Order Quantity"
+  },
+  {
+   "fieldname": "column_break_purchase",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_purchase_rate",
+   "fieldtype": "Currency",
+   "label": "Last Purchase Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "standard_rate",
+   "fieldtype": "Currency",
+   "label": "Standard Rate"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_inventory",
+   "fieldtype": "Section Break",
+   "label": "Inventory"
+  },
+  {
+   "fieldname": "opening_stock",
+   "fieldtype": "Float",
+   "label": "Opening Stock"
+  },
+  {
+   "fieldname": "valuation_rate",
+   "fieldtype": "Currency",
+   "label": "Valuation Rate"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_tax",
+   "fieldtype": "Section Break",
+   "label": "Tax Details"
+  },
+  {
+   "fieldname": "gst_hsn_code",
+   "fieldtype": "Data",
+   "label": "GST HSN Code",
+   "description": "HSN code for GST"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_nil_exempt",
+   "fieldtype": "Check",
+   "label": "Is Nil Rated or Exempt"
+  },
+  {
+   "fieldname": "section_break_status",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 14:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Item",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "item_name,item_code,item_group",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "item_name",
+ "track_changes": 1
+}

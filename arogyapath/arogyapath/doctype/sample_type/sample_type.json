@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:sample_type_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sample_type_name",
+  "specimen_code",
+  "column_break_1",
+  "container_type",
+  "tube_color",
+  "section_break_2",
+  "storage_temp",
+  "stability_hours",
+  "minimum_volume_ml",
+  "section_break_3",
+  "collection_instructions",
+  "handling_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "sample_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sample Type Name",
+   "reqd": 1,
+   "unique": 1,
+   "description": "e.g., Whole Blood (EDTA)"
+  },
+  {
+   "fieldname": "specimen_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Specimen Code",
+   "reqd": 1,
+   "description": "Short code: BLOOD, URINE, STOOL, SWAB"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "container_type",
+   "fieldtype": "Select",
+   "label": "Container Type",
+   "options": "EDTA Tube\nSST\nFluoride\nPlain\nUrine Cup\nSwab\nStool Container"
+  },
+  {
+   "fieldname": "tube_color",
+   "fieldtype": "Select",
+   "label": "Tube Color",
+   "options": "Purple\nYellow\nGrey\nRed\nGreen\nBlue\nBlack\nWhite"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Storage & Handling"
+  },
+  {
+   "fieldname": "storage_temp",
+   "fieldtype": "Select",
+   "label": "Storage Temperature",
+   "options": "Room Temp\n2-8°C\n-20°C\n-80°C"
+  },
+  {
+   "fieldname": "stability_hours",
+   "fieldtype": "Int",
+   "label": "Stability (Hours)",
+   "description": "Stability after collection"
+  },
+  {
+   "fieldname": "minimum_volume_ml",
+   "fieldtype": "Float",
+   "label": "Minimum Volume (mL)"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Instructions"
+  },
+  {
+   "fieldname": "collection_instructions",
+   "fieldtype": "Text",
+   "label": "Collection Instructions",
+   "description": "Patient preparation instructions"
+  },
+  {
+   "fieldname": "handling_notes",
+   "fieldtype": "Text",
+   "label": "Handling Notes",
+   "description": "Lab handling requirements"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Sample Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

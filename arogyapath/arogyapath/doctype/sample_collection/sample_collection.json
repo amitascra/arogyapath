@@ -1,0 +1,212 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "patient_visit",
+  "patient",
+  "patient_name",
+  "column_break_1",
+  "branch",
+  "collection_date",
+  "collection_time",
+  "section_break_2",
+  "collected_by",
+  "collection_center",
+  "column_break_3",
+  "status",
+  "rejection_reason",
+  "section_break_4",
+  "received_by",
+  "received_at",
+  "section_break_5",
+  "tubes",
+  "section_break_6",
+  "barcode_printed"
+ ],
+ "fields": [
+  {
+   "default": "ACC-.BRANCH.-.YYYYMMDD.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Accession Number Series",
+   "options": "ACC-.BRANCH.-.YYYYMMDD.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient_visit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Patient Visit",
+   "options": "Patient Visit",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "patient_visit.patient",
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "label": "Patient",
+   "options": "Patient",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "patient_visit.patient_name",
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Patient Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_visit.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Lab Branch",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "collection_date",
+   "fieldtype": "Date",
+   "label": "Collection Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "collection_time",
+   "fieldtype": "Time",
+   "label": "Collection Time"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Collection Details"
+  },
+  {
+   "fieldname": "collected_by",
+   "fieldtype": "Link",
+   "label": "Collected By",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "collection_center",
+   "fieldtype": "Link",
+   "label": "Collection Center",
+   "options": "Collection Center",
+   "description": "If home/franchise collection"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nCollected\nReceived\nRejected"
+  },
+  {
+   "depends_on": "eval:doc.status=='Rejected'",
+   "fieldname": "rejection_reason",
+   "fieldtype": "Select",
+   "label": "Rejection Reason",
+   "options": "\nHemolysed\nClotted\nInsufficient Volume\nWrong Tube\nUnlabeled\nOther"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Lab Receipt"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Link",
+   "label": "Received By",
+   "options": "Employee",
+   "description": "Lab receiving staff"
+  },
+  {
+   "fieldname": "received_at",
+   "fieldtype": "Datetime",
+   "label": "Received At"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break",
+   "label": "Tubes"
+  },
+  {
+   "fieldname": "tubes",
+   "fieldtype": "Table",
+   "label": "Tubes",
+   "options": "Sample Tube"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "barcode_printed",
+   "fieldtype": "Check",
+   "label": "Barcode Printed"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Sample Collection",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Reception",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Technician",
+   "write": 1
+  }
+ ],
+ "search_fields": "patient,patient_name,branch,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient_name",
+ "track_changes": 1
+}

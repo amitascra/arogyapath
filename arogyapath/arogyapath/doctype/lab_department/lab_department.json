@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:department_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "department_name",
+  "department_code",
+  "column_break_1",
+  "head_pathologist",
+  "turnaround_hours",
+  "section_break_2",
+  "report_template",
+  "sort_order"
+ ],
+ "fields": [
+  {
+   "fieldname": "department_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department Code",
+   "reqd": 1,
+   "description": "Short code: BIOCHEM, HAEM, MICRO"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "head_pathologist",
+   "fieldtype": "Link",
+   "label": "Head Pathologist",
+   "options": "User"
+  },
+  {
+   "default": "24",
+   "fieldname": "turnaround_hours",
+   "fieldtype": "Int",
+   "label": "Default TAT (Hours)"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Report Settings"
+  },
+  {
+   "fieldname": "report_template",
+   "fieldtype": "Link",
+   "label": "Report Template",
+   "options": "Lab Report Template"
+  },
+  {
+   "default": "0",
+   "fieldname": "sort_order",
+   "fieldtype": "Int",
+   "label": "Sort Order",
+   "description": "Print order on composite report"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Department",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

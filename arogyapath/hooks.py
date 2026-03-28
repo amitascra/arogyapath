@@ -1,14 +1,14 @@
 app_name = "arogyapath"
 app_title = "ArogyaPath"
 app_publisher = "Amit Kumar"
-app_description = "ArogyaPath"
+app_description = "Pathology Lab Management System"
 app_email = "hello@amitkumar.live"
 app_license = "mit"
 
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["frappe", "payments"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -70,20 +70,40 @@ app_license = "mit"
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
+# Boot Session
+# ----------
+# Boot session handler to add custom data
+boot_session = "arogyapath.arogyapath.startup.boot.boot_session"
+
 # Jinja
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "arogyapath.utils.jinja_methods",
-# 	"filters": "arogyapath.utils.jinja_filters"
-# }
+jinja = {
+	"methods": [
+		"arogyapath.arogyapath.utils.report.get_report_context",
+		"arogyapath.arogyapath.utils.gst.format_gstin",
+	]
+}
 
 # Installation
 # ------------
 
-# before_install = "arogyapath.install.before_install"
-# after_install = "arogyapath.install.after_install"
+# before_install = "arogyapath.arogyapath.install.before_install"
+after_install = "arogyapath.arogyapath.install.after_install"
+# after_migrate = "arogyapath.arogyapath.install.after_migrate"
+
+# Fixtures
+# --------
+# Workspace is exported as a fixture — roles/role profiles are created in install.py
+fixtures = [
+	{
+		"dt": "Workspace",
+		"filters": [
+			["module", "=", "ArogyaPath"]
+		]
+	}
+]
 
 # Uninstallation
 # ------------
@@ -135,36 +155,25 @@ app_license = "mit"
 
 # Document Events
 # ---------------
-# Hook on document methods and events
-
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+# NOTE: Lab Order, Lab Result, Lab Invoice, Reagent Lot all have logic in their
+# own DocType controllers (doctype/*/py). The controllers/ folder is reserved
+# for cross-cutting hooks that augment behaviour without replacing the controller.
+doc_events = {}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"arogyapath.tasks.all"
-# 	],
-# 	"daily": [
-# 		"arogyapath.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"arogyapath.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"arogyapath.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"arogyapath.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"daily": [
+		"arogyapath.arogyapath.tasks.send_tat_alerts",
+		"arogyapath.arogyapath.tasks.flag_expiring_reagents",
+		"arogyapath.arogyapath.tasks.flag_expiring_amc",
+		"arogyapath.arogyapath.tasks.flag_expiring_calibrations",
+	],
+	"hourly": [
+		"arogyapath.arogyapath.tasks.check_critical_tat_breach",
+	],
+}
 
 # Testing
 # -------

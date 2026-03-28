@@ -1,0 +1,156 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:analyzer_code",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "analyzer_name",
+  "analyzer_code",
+  "department",
+  "column_break_1",
+  "manufacturer",
+  "model_number",
+  "serial_number",
+  "branch",
+  "section_break_2",
+  "installation_date",
+  "amc_vendor",
+  "amc_expiry_date",
+  "column_break_3",
+  "last_calibration_date",
+  "next_calibration_due",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "analyzer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Analyzer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "analyzer_code",
+   "fieldtype": "Data",
+   "label": "Analyzer Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Data",
+   "label": "Manufacturer"
+  },
+  {
+   "fieldname": "model_number",
+   "fieldtype": "Data",
+   "label": "Model Number"
+  },
+  {
+   "fieldname": "serial_number",
+   "fieldtype": "Data",
+   "label": "Serial Number"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "AMC & Calibration"
+  },
+  {
+   "fieldname": "installation_date",
+   "fieldtype": "Date",
+   "label": "Installation Date"
+  },
+  {
+   "fieldname": "amc_vendor",
+   "fieldtype": "Data",
+   "label": "AMC Vendor"
+  },
+  {
+   "fieldname": "amc_expiry_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "AMC Expiry Date"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_calibration_date",
+   "fieldtype": "Date",
+   "label": "Last Calibration Date"
+  },
+  {
+   "fieldname": "next_calibration_due",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Calibration Due"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Analyzer",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,55 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"pm_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Patient Overview</b></span>\",\"col\":12}},{\"id\":\"pm_kpi1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Patients\",\"col\":3}},{\"id\":\"pm_kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"New Patients Today\",\"col\":3}},{\"id\":\"pm_kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Visits\",\"col\":3}},{\"id\":\"pm_kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Samples Collected Today\",\"col\":3}},{\"id\":\"pm_spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"pm_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"pm_sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Patient\",\"col\":3}},{\"id\":\"pm_sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Patient Visit\",\"col\":3}},{\"id\":\"pm_sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sample Collection\",\"col\":3}},{\"id\":\"pm_sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Order\",\"col\":3}},{\"id\":\"pm_spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"pm_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Patient Management</b></span>\",\"col\":12}},{\"id\":\"pm_card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Patient Registration\",\"col\":4}},{\"id\":\"pm_card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Visits & Orders\",\"col\":4}},{\"id\":\"pm_card3\",\"type\":\"card\",\"data\":{\"card_name\":\"Sample Management\",\"col\":4}}]",
+ "creation": "2026-03-28 16:20:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "patient",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Patient Management",
+ "links": [
+  {"hidden": 0, "is_query_report": 0, "label": "Patient Registration", "link_count": 0, "onboard": 0, "type": "Card Break"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Patient", "link_count": 0, "link_to": "Patient", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Doctor", "link_count": 0, "link_to": "Doctor", "link_type": "DocType", "onboard": 0, "type": "Link"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Collection Center", "link_count": 0, "link_to": "Collection Center", "link_type": "DocType", "onboard": 0, "type": "Link"},
+  {"hidden": 0, "is_query_report": 0, "label": "Visits & Orders", "link_count": 0, "onboard": 0, "type": "Card Break"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Patient Visit", "link_count": 0, "link_to": "Patient Visit", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Lab Order", "link_count": 0, "link_to": "Lab Order", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"hidden": 0, "is_query_report": 0, "label": "Sample Management", "link_count": 0, "onboard": 0, "type": "Card Break"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Sample Collection", "link_count": 0, "link_to": "Sample Collection", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Sample Type", "link_count": 0, "link_to": "Sample Type", "link_type": "DocType", "onboard": 0, "type": "Link"},
+  {"dependencies": "", "hidden": 0, "is_query_report": 0, "label": "Sample Tube", "link_count": 0, "link_to": "Sample Tube", "link_type": "DocType", "onboard": 0, "type": "Link"}
+ ],
+ "modified": "2026-03-28 16:20:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Patient Management",
+ "number_cards": [
+  {"label": "Total Patients", "method": "arogyapath.arogyapath.workspace_utils.get_total_patients", "doctype": "Patient"},
+  {"label": "New Patients Today", "method": "arogyapath.arogyapath.workspace_utils.get_new_patients_today", "doctype": "Patient"},
+  {"label": "Active Visits", "method": "arogyapath.arogyapath.workspace_utils.get_active_visits", "doctype": "Patient Visit"},
+  {"label": "Samples Collected Today", "method": "arogyapath.arogyapath.workspace_utils.get_samples_collected_today", "doctype": "Sample Collection"}
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {"role": "Lab Admin"},
+  {"role": "Lab Manager"},
+  {"role": "Lab Reception"}
+ ],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {"color": "Blue", "label": "Patient", "link_to": "Patient", "type": "DocType"},
+  {"color": "Green", "label": "Patient Visit", "link_to": "Patient Visit", "type": "DocType"},
+  {"color": "Orange", "label": "Sample Collection", "link_to": "Sample Collection", "type": "DocType"},
+  {"color": "Purple", "label": "Lab Order", "link_to": "Lab Order", "type": "DocType"}
+ ],
+ "title": "Patient Management"
+}

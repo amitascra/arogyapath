@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "patient",
+  "patient_name",
+  "visit_date",
+  "visit_time",
+  "column_break_1",
+  "branch",
+  "visit_type",
+  "status",
+  "section_break_2",
+  "referred_by",
+  "referral_slip_no",
+  "section_break_3",
+  "clinical_notes"
+ ],
+ "fields": [
+  {
+   "default": "VIS-.BRANCH.-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "VIS-.BRANCH.-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Patient",
+   "options": "Patient",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "patient.full_name",
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Patient Name",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "visit_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Visit Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_time",
+   "fieldtype": "Time",
+   "label": "Visit Time"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_type",
+   "fieldtype": "Select",
+   "label": "Visit Type",
+   "options": "Walk-in\nAppointment\nHome Collection",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nSample Collected\nResulted\nCompleted"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Referral Details"
+  },
+  {
+   "fieldname": "referred_by",
+   "fieldtype": "Link",
+   "label": "Referred By",
+   "options": "Doctor"
+  },
+  {
+   "fieldname": "referral_slip_no",
+   "fieldtype": "Data",
+   "label": "Referral Slip No"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Clinical Notes"
+  },
+  {
+   "fieldname": "clinical_notes",
+   "fieldtype": "Small Text",
+   "label": "Clinical Notes",
+   "description": "Symptoms, clinical history from referral"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Patient Visit",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Reception",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "patient,patient_name,branch",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient_name",
+ "track_changes": 1
+}

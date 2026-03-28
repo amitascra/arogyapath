@@ -1,0 +1,288 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 14:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "supplier_name",
+  "supplier_group",
+  "supplier_type",
+  "column_break_1",
+  "status",
+  "is_transporter",
+  "section_break_contact",
+  "contact_person",
+  "email",
+  "mobile",
+  "phone",
+  "column_break_contact",
+  "website",
+  "address",
+  "city",
+  "state",
+  "pincode",
+  "country",
+  "section_break_tax",
+  "gstin",
+  "pan",
+  "tax_withholding_category",
+  "column_break_tax",
+  "msme_registered",
+  "msme_registration_number",
+  "section_break_payment",
+  "payment_terms",
+  "credit_days",
+  "column_break_payment",
+  "bank_name",
+  "bank_account_no",
+  "ifsc_code",
+  "section_break_internal",
+  "default_currency",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "SUP-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SUP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier Group",
+   "options": "Supplier Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier_type",
+   "fieldtype": "Select",
+   "label": "Supplier Type",
+   "options": "\nReagent Supplier\nEquipment Supplier\nService Provider\nConsumables\nOther"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nBlocked"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_transporter",
+   "fieldtype": "Check",
+   "label": "Is Transporter"
+  },
+  {
+   "fieldname": "section_break_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "default": "India",
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "label": "Country"
+  },
+  {
+   "fieldname": "section_break_tax",
+   "fieldtype": "Section Break",
+   "label": "Tax & Compliance"
+  },
+  {
+   "fieldname": "gstin",
+   "fieldtype": "Data",
+   "label": "GSTIN",
+   "description": "15-character GST number"
+  },
+  {
+   "fieldname": "pan",
+   "fieldtype": "Data",
+   "label": "PAN",
+   "description": "10-character PAN number"
+  },
+  {
+   "fieldname": "tax_withholding_category",
+   "fieldtype": "Select",
+   "label": "Tax Withholding Category",
+   "options": "\n194C - Contractor\n194J - Professional Services\n194H - Commission\n194I - Rent"
+  },
+  {
+   "fieldname": "column_break_tax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "msme_registered",
+   "fieldtype": "Check",
+   "label": "MSME Registered"
+  },
+  {
+   "depends_on": "eval:doc.msme_registered==1",
+   "fieldname": "msme_registration_number",
+   "fieldtype": "Data",
+   "label": "MSME Registration Number"
+  },
+  {
+   "fieldname": "section_break_payment",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "\nCash on Delivery\nCredit\nAdvance Payment\n30 Days Credit\n60 Days Credit\n90 Days Credit"
+  },
+  {
+   "fieldname": "credit_days",
+   "fieldtype": "Int",
+   "label": "Credit Days",
+   "description": "Number of days credit allowed"
+  },
+  {
+   "fieldname": "column_break_payment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_internal",
+   "fieldtype": "Section Break",
+   "label": "Internal Details"
+  },
+  {
+   "default": "INR",
+   "fieldname": "default_currency",
+   "fieldtype": "Select",
+   "label": "Default Currency",
+   "options": "INR\nUSD\nEUR"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 14:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Supplier",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "supplier_name,supplier_group,gstin,pan",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "supplier_name",
+ "track_changes": 1
+}

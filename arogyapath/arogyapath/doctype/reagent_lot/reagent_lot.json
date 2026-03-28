@@ -1,0 +1,195 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "reagent",
+  "reagent_name",
+  "lot_number",
+  "column_break_1",
+  "branch",
+  "quantity_received",
+  "quantity_remaining",
+  "unit_of_measure",
+  "section_break_2",
+  "manufacture_date",
+  "expiry_date",
+  "days_to_expiry",
+  "column_break_3",
+  "received_date",
+  "received_by",
+  "supplier",
+  "purchase_price",
+  "section_break_4",
+  "status"
+ ],
+ "fields": [
+  {
+   "default": "RLOT-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RLOT-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reagent",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reagent",
+   "options": "Reagent",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "reagent.reagent_name",
+   "fieldname": "reagent_name",
+   "fieldtype": "Data",
+   "label": "Reagent Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lot_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Lot Number",
+   "reqd": 1,
+   "description": "Manufacturer's lot/batch number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quantity_received",
+   "fieldtype": "Float",
+   "label": "Quantity Received",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quantity_remaining",
+   "fieldtype": "Float",
+   "label": "Quantity Remaining",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "reagent.unit_of_measure",
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Data",
+   "label": "Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Dates"
+  },
+  {
+   "fieldname": "manufacture_date",
+   "fieldtype": "Date",
+   "label": "Manufacture Date"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expiry Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "days_to_expiry",
+   "fieldtype": "Int",
+   "label": "Days to Expiry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "received_date",
+   "fieldtype": "Date",
+   "label": "Received Date"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Link",
+   "label": "Received By",
+   "options": "User"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Data",
+   "label": "Supplier"
+  },
+  {
+   "fieldname": "purchase_price",
+   "fieldtype": "Currency",
+   "label": "Purchase Price"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nExpired\nConsumed\nRejected"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Reagent Lot",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Technician",
+   "write": 1
+  }
+ ],
+ "search_fields": "reagent,lot_number,branch,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

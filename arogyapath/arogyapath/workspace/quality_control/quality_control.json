@@ -1,0 +1,38 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"qc_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quality Control Overview</b></span>\",\"col\":12}},{\"id\":\"qc_kpi1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Tests Today\",\"col\":3}},{\"id\":\"qc_kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Out of Control\",\"col\":3}},{\"id\":\"qc_kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Calibrations Due\",\"col\":3}},{\"id\":\"qc_kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Analyzers\",\"col\":3}},{\"id\":\"qc_spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qc_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"qc_sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"QC Result\",\"col\":3}},{\"id\":\"qc_sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Equipment Calibration Log\",\"col\":3}},{\"id\":\"qc_sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Analyzer\",\"col\":3}},{\"id\":\"qc_sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"QC Material\",\"col\":3}},{\"id\":\"qc_spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qc_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quality Control & NABL</b></span>\",\"col\":12}},{\"id\":\"qc_card1\",\"type\":\"card\",\"data\":{\"card_name\":\"QC Testing\",\"col\":4}},{\"id\":\"qc_card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Equipment & Calibration\",\"col\":4}},{\"id\":\"qc_card3\",\"type\":\"card\",\"data\":{\"card_name\":\"NABL Compliance\",\"col\":4}}]",
+ "creation": "2026-03-28 16:20:00.000000",
+ "doctype": "Workspace",
+ "icon": "quality-management",
+ "label": "Quality Control",
+ "links": [
+  {"hidden": 0, "label": "QC Testing", "type": "Card Break"},
+  {"label": "QC Result", "link_to": "QC Result", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "QC Material", "link_to": "QC Material", "link_type": "DocType", "type": "Link"},
+  {"label": "Westgard Rule Config", "link_to": "Westgard Rule Config", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Equipment & Calibration", "type": "Card Break"},
+  {"label": "Analyzer", "link_to": "Analyzer", "link_type": "DocType", "type": "Link"},
+  {"label": "Equipment Calibration Log", "link_to": "Equipment Calibration Log", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"hidden": 0, "label": "NABL Compliance", "type": "Card Break"},
+  {"label": "Pathologist Signature", "link_to": "Pathologist Signature", "link_type": "DocType", "type": "Link"},
+  {"label": "Lab Settings", "link_to": "Lab Settings", "link_type": "DocType", "type": "Link"}
+ ],
+ "module": "ArogyaPath",
+ "name": "Quality Control",
+ "number_cards": [
+  {"label": "QC Tests Today", "method": "arogyapath.arogyapath.workspace_utils.get_qc_tests_today", "doctype": "QC Result"},
+  {"label": "Out of Control", "method": "arogyapath.arogyapath.workspace_utils.get_out_of_control_qc", "doctype": "QC Result"},
+  {"label": "Calibrations Due", "method": "arogyapath.arogyapath.workspace_utils.get_calibrations_due", "doctype": "Equipment Calibration Log"},
+  {"label": "Active Analyzers", "method": "arogyapath.arogyapath.workspace_utils.get_active_analyzers", "doctype": "Analyzer"}
+ ],
+ "public": 1,
+ "roles": [{"role": "Lab Admin"}, {"role": "Lab Manager"}, {"role": "Lab Technician"}],
+ "sequence_id": 6.0,
+ "shortcuts": [
+  {"color": "Purple", "label": "QC Result", "link_to": "QC Result", "type": "DocType"},
+  {"color": "Gray", "label": "Equipment Calibration Log", "link_to": "Equipment Calibration Log", "type": "DocType"},
+  {"color": "Blue", "label": "Analyzer", "link_to": "Analyzer", "type": "DocType"},
+  {"color": "Orange", "label": "QC Material", "link_to": "QC Material", "type": "DocType"}
+ ],
+ "title": "Quality Control"
+}

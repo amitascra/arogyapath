@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:material_code",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "material_name",
+  "material_code",
+  "level",
+  "column_break_1",
+  "manufacturer",
+  "lot_number",
+  "expiry_date",
+  "section_break_2",
+  "target_mean",
+  "target_sd",
+  "cv_percent",
+  "column_break_3",
+  "department",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Material Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_code",
+   "fieldtype": "Data",
+   "label": "Material Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Level",
+   "options": "Level 1 (Low)\nLevel 2 (Normal)\nLevel 3 (High)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Data",
+   "label": "Manufacturer"
+  },
+  {
+   "fieldname": "lot_number",
+   "fieldtype": "Data",
+   "label": "Lot Number"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Statistical Targets"
+  },
+  {
+   "fieldname": "target_mean",
+   "fieldtype": "Float",
+   "label": "Target Mean",
+   "description": "Expected mean value for Westgard rules"
+  },
+  {
+   "fieldname": "target_sd",
+   "fieldtype": "Float",
+   "label": "Target SD",
+   "description": "Expected standard deviation"
+  },
+  {
+   "fieldname": "cv_percent",
+   "fieldtype": "Float",
+   "label": "CV %",
+   "description": "Coefficient of variation"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "QC Material",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

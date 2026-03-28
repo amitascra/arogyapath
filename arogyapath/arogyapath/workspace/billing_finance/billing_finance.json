@@ -1,0 +1,43 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"bf_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Billing & Finance Overview</b></span>\",\"col\":12}},{\"id\":\"bf_kpi1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today's Revenue\",\"col\":3}},{\"id\":\"bf_kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Outstanding Amount\",\"col\":3}},{\"id\":\"bf_kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Payments Received\",\"col\":3}},{\"id\":\"bf_kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Invoices Generated\",\"col\":3}},{\"id\":\"bf_spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"bf_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"bf_sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Invoice\",\"col\":3}},{\"id\":\"bf_sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"bf_sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Return\",\"col\":3}},{\"id\":\"bf_sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"bf_spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"bf_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Billing & Finance</b></span>\",\"col\":12}},{\"id\":\"bf_card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales & Invoicing\",\"col\":4}},{\"id\":\"bf_card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Payments & Returns\",\"col\":4}},{\"id\":\"bf_card3\",\"type\":\"card\",\"data\":{\"card_name\":\"Purchase & Accounts\",\"col\":4}}]",
+ "creation": "2026-03-28 16:20:00.000000",
+ "doctype": "Workspace",
+ "icon": "accounting",
+ "label": "Billing & Finance",
+ "links": [
+  {"hidden": 0, "label": "Sales & Invoicing", "type": "Card Break"},
+  {"label": "Lab Invoice", "link_to": "Lab Invoice", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Corporate Account", "link_to": "Corporate Account", "link_type": "DocType", "type": "Link"},
+  {"label": "Discount Scheme", "link_to": "Discount Scheme", "link_type": "DocType", "type": "Link"},
+  {"label": "Doctor Commission Log", "link_to": "Doctor Commission Log", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Payments & Returns", "type": "Card Break"},
+  {"label": "Payment Entry", "link_to": "Payment Entry", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Mode of Payment", "link_to": "Mode of Payment", "link_type": "DocType", "type": "Link"},
+  {"label": "Sales Return", "link_to": "Sales Return", "link_type": "DocType", "type": "Link"},
+  {"label": "Purchase Return", "link_to": "Purchase Return", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Purchase & Accounts", "type": "Card Break"},
+  {"label": "Purchase Invoice", "link_to": "Purchase Invoice", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Supplier", "link_to": "Supplier", "link_type": "DocType", "type": "Link"},
+  {"label": "Account", "link_to": "Account", "link_type": "DocType", "type": "Link"},
+  {"label": "GL Entry", "link_to": "GL Entry", "link_type": "DocType", "type": "Link"}
+ ],
+ "module": "ArogyaPath",
+ "name": "Billing & Finance",
+ "number_cards": [
+  {"label": "Today's Revenue", "method": "arogyapath.arogyapath.workspace_utils.get_todays_revenue", "doctype": "Lab Invoice"},
+  {"label": "Outstanding Amount", "method": "arogyapath.arogyapath.workspace_utils.get_outstanding_amount", "doctype": "Lab Invoice"},
+  {"label": "Payments Received", "method": "arogyapath.arogyapath.workspace_utils.get_payments_received_today", "doctype": "Payment Entry"},
+  {"label": "Invoices Generated", "method": "arogyapath.arogyapath.workspace_utils.get_invoices_generated_today", "doctype": "Lab Invoice"}
+ ],
+ "public": 1,
+ "roles": [{"role": "Lab Admin"}, {"role": "Lab Manager"}, {"role": "Lab Reception"}],
+ "sequence_id": 4.0,
+ "shortcuts": [
+  {"color": "Orange", "label": "Lab Invoice", "link_to": "Lab Invoice", "type": "DocType"},
+  {"color": "Green", "label": "Payment Entry", "link_to": "Payment Entry", "type": "DocType"},
+  {"color": "Red", "label": "Sales Return", "link_to": "Sales Return", "type": "DocType"},
+  {"color": "Blue", "label": "Purchase Invoice", "link_to": "Purchase Invoice", "type": "DocType"}
+ ],
+ "title": "Billing & Finance"
+}

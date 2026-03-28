@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:panel_code",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "panel_name",
+  "panel_code",
+  "department",
+  "column_break_1",
+  "panel_price",
+  "is_active",
+  "section_break_2",
+  "description",
+  "section_break_3",
+  "tests"
+ ],
+ "fields": [
+  {
+   "fieldname": "panel_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Panel Name",
+   "reqd": 1,
+   "description": "e.g., Lipid Profile, Liver Function Test"
+  },
+  {
+   "fieldname": "panel_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Panel Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Lab Department"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "panel_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Panel Price",
+   "reqd": 1,
+   "description": "Usually less than sum of individual tests"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Tests in this Panel"
+  },
+  {
+   "fieldname": "tests",
+   "fieldtype": "Table",
+   "label": "Tests",
+   "options": "Panel Item",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Test Panel",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Reception"
+  }
+ ],
+ "search_fields": "panel_name,panel_code",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "panel_name",
+ "track_changes": 1
+}

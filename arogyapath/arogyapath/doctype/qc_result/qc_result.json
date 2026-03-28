@@ -1,0 +1,177 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "run_date",
+  "run_time",
+  "department",
+  "column_break_1",
+  "analyzer",
+  "qc_material",
+  "material_level",
+  "branch",
+  "section_break_2",
+  "entered_by",
+  "overall_status",
+  "section_break_3",
+  "items",
+  "section_break_4",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "QCR-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "QCR-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "run_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Run Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "run_time",
+   "fieldtype": "Time",
+   "label": "Run Time"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "analyzer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Analyzer",
+   "options": "Analyzer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qc_material",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "QC Material",
+   "options": "QC Material",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "qc_material.level",
+   "fieldname": "material_level",
+   "fieldtype": "Data",
+   "label": "Material Level",
+   "read_only": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Run Details"
+  },
+  {
+   "fieldname": "entered_by",
+   "fieldtype": "Link",
+   "label": "Entered By",
+   "options": "Employee"
+  },
+  {
+   "default": "Pass",
+   "fieldname": "overall_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Overall Status",
+   "options": "Pass\nWarning\nReject",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Parameter Results"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "QC Parameters",
+   "options": "QC Result Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks",
+   "description": "Actions taken if QC failed"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "QC Result",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Technician",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

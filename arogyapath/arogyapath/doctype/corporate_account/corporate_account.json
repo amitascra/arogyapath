@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:company_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "company_code",
+  "gst_category",
+  "gstin",
+  "pan",
+  "column_break_1",
+  "billing_address",
+  "contact_person",
+  "contact_email",
+  "contact_mobile",
+  "section_break_2",
+  "credit_limit",
+  "credit_days",
+  "is_active",
+  "section_break_3",
+  "custom_rates"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "company_code",
+   "fieldtype": "Data",
+   "label": "Company Code",
+   "description": "Short code for naming series"
+  },
+  {
+   "default": "Registered Regular",
+   "fieldname": "gst_category",
+   "fieldtype": "Select",
+   "label": "GST Category",
+   "options": "Unregistered\nRegistered Regular\nRegistered Composition\nSEZ\nOverseas",
+   "description": "Determines GST applicability"
+  },
+  {
+   "fieldname": "gstin",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "GSTIN",
+   "description": "Required for B2B GST invoice"
+  },
+  {
+   "fieldname": "pan",
+   "fieldtype": "Data",
+   "label": "PAN",
+   "description": "10-digit Permanent Account Number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "billing_address",
+   "fieldtype": "Small Text",
+   "label": "Billing Address"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "label": "Contact Mobile"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Credit Terms"
+  },
+  {
+   "default": "0",
+   "fieldname": "credit_limit",
+   "fieldtype": "Currency",
+   "label": "Credit Limit",
+   "description": "0 = unlimited"
+  },
+  {
+   "default": "30",
+   "fieldname": "credit_days",
+   "fieldtype": "Int",
+   "label": "Credit Days"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Custom Test Rates"
+  },
+  {
+   "fieldname": "custom_rates",
+   "fieldtype": "Table",
+   "label": "Custom Rates",
+   "options": "Corporate Account Rate",
+   "description": "Override rates for specific tests"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Corporate Account",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Reception"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

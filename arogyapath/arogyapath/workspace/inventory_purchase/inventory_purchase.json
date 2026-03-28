@@ -1,0 +1,40 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ip_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Inventory & Purchase Overview</b></span>\",\"col\":12}},{\"id\":\"ip_kpi1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Low Stock Items\",\"col\":3}},{\"id\":\"ip_kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Expiring Reagents\",\"col\":3}},{\"id\":\"ip_kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Stock Value\",\"col\":3}},{\"id\":\"ip_kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Purchase Orders\",\"col\":3}},{\"id\":\"ip_spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ip_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"ip_sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Reagent Lot\",\"col\":3}},{\"id\":\"ip_sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Reagent Consumption Entry\",\"col\":3}},{\"id\":\"ip_sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"ip_sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"ip_spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ip_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Inventory & Purchase</b></span>\",\"col\":12}},{\"id\":\"ip_card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Reagent Management\",\"col\":4}},{\"id\":\"ip_card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Purchase Management\",\"col\":4}},{\"id\":\"ip_card3\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Tracking\",\"col\":4}}]",
+ "creation": "2026-03-28 16:20:00.000000",
+ "doctype": "Workspace",
+ "icon": "stock",
+ "label": "Inventory & Purchase",
+ "links": [
+  {"hidden": 0, "label": "Reagent Management", "type": "Card Break"},
+  {"label": "Reagent", "link_to": "Reagent", "link_type": "DocType", "type": "Link"},
+  {"label": "Reagent Lot", "link_to": "Reagent Lot", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Reagent Consumption Entry", "link_to": "Reagent Consumption Entry", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Purchase Management", "type": "Card Break"},
+  {"label": "Purchase Invoice", "link_to": "Purchase Invoice", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Supplier", "link_to": "Supplier", "link_type": "DocType", "type": "Link"},
+  {"label": "Supplier Group", "link_to": "Supplier Group", "link_type": "DocType", "type": "Link"},
+  {"label": "Item", "link_to": "Item", "link_type": "DocType", "type": "Link"},
+  {"label": "Purchase Return", "link_to": "Purchase Return", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Stock Tracking", "type": "Card Break"},
+  {"label": "Stock Ledger Entry", "link_to": "Stock Ledger Entry", "link_type": "DocType", "type": "Link"}
+ ],
+ "module": "ArogyaPath",
+ "name": "Inventory & Purchase",
+ "number_cards": [
+  {"label": "Low Stock Items", "method": "arogyapath.arogyapath.workspace_utils.get_low_stock_items", "doctype": "Reagent"},
+  {"label": "Expiring Reagents", "method": "arogyapath.arogyapath.workspace_utils.get_expiring_reagents", "doctype": "Reagent Lot"},
+  {"label": "Stock Value", "method": "arogyapath.arogyapath.workspace_utils.get_stock_value", "doctype": "Stock Ledger Entry"},
+  {"label": "Purchase Orders", "method": "arogyapath.arogyapath.workspace_utils.get_purchase_orders_count", "doctype": "Purchase Invoice"}
+ ],
+ "public": 1,
+ "roles": [{"role": "Lab Admin"}, {"role": "Lab Manager"}],
+ "sequence_id": 5.0,
+ "shortcuts": [
+  {"color": "Blue", "label": "Reagent Lot", "link_to": "Reagent Lot", "type": "DocType"},
+  {"color": "Orange", "label": "Reagent Consumption Entry", "link_to": "Reagent Consumption Entry", "type": "DocType"},
+  {"color": "Purple", "label": "Purchase Invoice", "link_to": "Purchase Invoice", "type": "DocType"},
+  {"color": "Green", "label": "Item", "link_to": "Item", "type": "DocType"}
+ ],
+ "title": "Inventory & Purchase"
+}

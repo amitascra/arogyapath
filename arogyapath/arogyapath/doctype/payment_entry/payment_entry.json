@@ -1,0 +1,327 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 14:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "is_submittable": 1,
+ "field_order": [
+  "naming_series",
+  "payment_type",
+  "posting_date",
+  "branch",
+  "mode_of_payment",
+  "column_break_1",
+  "party_type",
+  "party",
+  "party_name",
+  "section_break_accounts",
+  "paid_from",
+  "paid_from_account_type",
+  "column_break_accounts",
+  "paid_to",
+  "paid_to_account_type",
+  "section_break_amounts",
+  "paid_amount",
+  "received_amount",
+  "column_break_amounts",
+  "total_allocated_amount",
+  "unallocated_amount",
+  "difference_amount",
+  "section_break_bank",
+  "reference_no",
+  "reference_date",
+  "column_break_bank",
+  "bank_account",
+  "clearance_date",
+  "section_break_online",
+  "razorpay_order_id",
+  "razorpay_payment_id",
+  "payment_gateway",
+  "section_break_references",
+  "references",
+  "section_break_deductions",
+  "deductions",
+  "section_break_status",
+  "status",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "PE-.BRANCH.-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PE-.BRANCH.-.YYYY.-.#####\nPE-RFD-.YYYY.-.#####\nPE-ADV-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Type",
+   "options": "Receive\nPay\nInternal Transfer",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Party Type",
+   "options": "\nPatient\nSupplier\nDoctor\nEmployee\nCorporate Account"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Party",
+   "options": "party_type"
+  },
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "label": "Party Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_accounts",
+   "fieldtype": "Section Break",
+   "label": "Account Details"
+  },
+  {
+   "fieldname": "paid_from",
+   "fieldtype": "Data",
+   "label": "Paid From",
+   "description": "e.g., Patient - Cash, Bank - HDFC"
+  },
+  {
+   "fieldname": "paid_from_account_type",
+   "fieldtype": "Select",
+   "label": "Paid From Account Type",
+   "options": "Cash\nBank"
+  },
+  {
+   "fieldname": "column_break_accounts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "paid_to",
+   "fieldtype": "Data",
+   "label": "Paid To"
+  },
+  {
+   "fieldname": "paid_to_account_type",
+   "fieldtype": "Select",
+   "label": "Paid To Account Type",
+   "options": "Cash\nBank"
+  },
+  {
+   "fieldname": "section_break_amounts",
+   "fieldtype": "Section Break",
+   "label": "Amounts"
+  },
+  {
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "received_amount",
+   "fieldtype": "Currency",
+   "label": "Received Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_amounts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_allocated_amount",
+   "fieldtype": "Currency",
+   "label": "Total Allocated Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "unallocated_amount",
+   "fieldtype": "Currency",
+   "label": "Unallocated Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "difference_amount",
+   "fieldtype": "Currency",
+   "label": "Difference Amount",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_bank",
+   "fieldtype": "Section Break",
+   "label": "Bank/Cheque Details"
+  },
+  {
+   "fieldname": "reference_no",
+   "fieldtype": "Data",
+   "label": "Reference No",
+   "description": "Cheque no/UPI ref/Card last 4 digits"
+  },
+  {
+   "fieldname": "reference_date",
+   "fieldtype": "Date",
+   "label": "Reference Date"
+  },
+  {
+   "fieldname": "column_break_bank",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Data",
+   "label": "Bank Account"
+  },
+  {
+   "fieldname": "clearance_date",
+   "fieldtype": "Date",
+   "label": "Clearance Date",
+   "description": "For cheques"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_online",
+   "fieldtype": "Section Break",
+   "label": "Online Payment Details"
+  },
+  {
+   "fieldname": "razorpay_order_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Order ID"
+  },
+  {
+   "fieldname": "razorpay_payment_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Payment ID"
+  },
+  {
+   "fieldname": "payment_gateway",
+   "fieldtype": "Select",
+   "label": "Payment Gateway",
+   "options": "\nRazorpay\nPayTM\nPhonePe"
+  },
+  {
+   "fieldname": "section_break_references",
+   "fieldtype": "Section Break",
+   "label": "Payment References"
+  },
+  {
+   "fieldname": "references",
+   "fieldtype": "Table",
+   "label": "References",
+   "options": "Payment Entry Reference"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_deductions",
+   "fieldtype": "Section Break",
+   "label": "Deductions (Bank Charges, TDS)"
+  },
+  {
+   "fieldname": "deductions",
+   "fieldtype": "Table",
+   "label": "Deductions",
+   "options": "Payment Entry Deduction"
+  },
+  {
+   "fieldname": "section_break_status",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nSubmitted\nCleared\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 14:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Payment Entry",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Reception",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "party,party_name,payment_type,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "party_name",
+ "track_changes": 1
+}

@@ -1,0 +1,323 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 14:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "is_submittable": 1,
+ "field_order": [
+  "naming_series",
+  "supplier",
+  "supplier_name",
+  "posting_date",
+  "due_date",
+  "column_break_1",
+  "branch",
+  "bill_no",
+  "bill_date",
+  "section_break_items",
+  "items",
+  "section_break_totals",
+  "total_qty",
+  "base_total",
+  "column_break_totals",
+  "total_cgst",
+  "total_sgst",
+  "total_igst",
+  "total_tax",
+  "section_break_grand",
+  "grand_total",
+  "in_words",
+  "column_break_grand",
+  "outstanding_amount",
+  "payment_status",
+  "section_break_tax_details",
+  "supplier_gstin",
+  "place_of_supply",
+  "is_interstate",
+  "reverse_charge",
+  "column_break_tax",
+  "tds_applicable",
+  "tds_category",
+  "tds_rate",
+  "tds_amount",
+  "section_break_payment",
+  "payment_terms",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "PINV-.BRANCH.-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PINV-.BRANCH.-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bill_no",
+   "fieldtype": "Data",
+   "label": "Supplier Invoice No",
+   "description": "Supplier's bill number"
+  },
+  {
+   "fieldname": "bill_date",
+   "fieldtype": "Date",
+   "label": "Supplier Invoice Date"
+  },
+  {
+   "fieldname": "section_break_items",
+   "fieldtype": "Section Break",
+   "label": "Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Purchase Invoice Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_totals",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "total_qty",
+   "fieldtype": "Float",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_total",
+   "fieldtype": "Currency",
+   "label": "Base Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_totals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_cgst",
+   "fieldtype": "Currency",
+   "label": "Total CGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_sgst",
+   "fieldtype": "Currency",
+   "label": "Total SGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_igst",
+   "fieldtype": "Currency",
+   "label": "Total IGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_tax",
+   "fieldtype": "Currency",
+   "label": "Total Tax",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_grand",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "in_words",
+   "fieldtype": "Data",
+   "label": "In Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_grand",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "label": "Outstanding Amount",
+   "read_only": 1
+  },
+  {
+   "default": "Unpaid",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "options": "Unpaid\nPartly Paid\nPaid",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_tax_details",
+   "fieldtype": "Section Break",
+   "label": "Tax Details"
+  },
+  {
+   "fetch_from": "supplier.gstin",
+   "fieldname": "supplier_gstin",
+   "fieldtype": "Data",
+   "label": "Supplier GSTIN",
+   "read_only": 1
+  },
+  {
+   "fieldname": "place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_interstate",
+   "fieldtype": "Check",
+   "label": "Is Interstate",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "reverse_charge",
+   "fieldtype": "Check",
+   "label": "Reverse Charge Applicable"
+  },
+  {
+   "fieldname": "column_break_tax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "tds_applicable",
+   "fieldtype": "Check",
+   "label": "TDS Applicable"
+  },
+  {
+   "depends_on": "eval:doc.tds_applicable==1",
+   "fetch_from": "supplier.tax_withholding_category",
+   "fieldname": "tds_category",
+   "fieldtype": "Data",
+   "label": "TDS Category"
+  },
+  {
+   "depends_on": "eval:doc.tds_applicable==1",
+   "fieldname": "tds_rate",
+   "fieldtype": "Float",
+   "label": "TDS Rate (%)",
+   "precision": "2"
+  },
+  {
+   "depends_on": "eval:doc.tds_applicable==1",
+   "fieldname": "tds_amount",
+   "fieldtype": "Currency",
+   "label": "TDS Amount",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_payment",
+   "fieldtype": "Section Break",
+   "label": "Payment & Remarks"
+  },
+  {
+   "fetch_from": "supplier.payment_terms",
+   "fieldname": "payment_terms",
+   "fieldtype": "Data",
+   "label": "Payment Terms"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 14:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Purchase Invoice",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "search_fields": "supplier,supplier_name,bill_no,payment_status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "supplier_name",
+ "track_changes": 1
+}

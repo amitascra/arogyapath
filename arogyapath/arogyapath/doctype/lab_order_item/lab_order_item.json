@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "test",
+  "panel",
+  "test_name",
+  "department",
+  "column_break_1",
+  "sample_type",
+  "rate",
+  "is_outsourced",
+  "column_break_2",
+  "tat_deadline",
+  "status",
+  "result"
+ ],
+ "fields": [
+  {
+   "fieldname": "test",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Test",
+   "options": "Lab Test Master"
+  },
+  {
+   "fieldname": "panel",
+   "fieldtype": "Link",
+   "label": "Panel",
+   "options": "Lab Test Panel",
+   "description": "If ordered as part of a panel"
+  },
+  {
+   "fetch_from": "test.test_name",
+   "fieldname": "test_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "test.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Lab Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "test.sample_type",
+   "fieldname": "sample_type",
+   "fieldtype": "Link",
+   "label": "Sample Type",
+   "options": "Sample Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "test.cost",
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate"
+  },
+  {
+   "fetch_from": "test.is_outsourced",
+   "fieldname": "is_outsourced",
+   "fieldtype": "Check",
+   "label": "Is Outsourced",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tat_deadline",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "TAT Deadline"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nProcessing\nResulted\nOutsourced\nCancelled"
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Link",
+   "label": "Result",
+   "options": "Lab Result"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Order Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

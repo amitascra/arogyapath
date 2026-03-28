@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "department",
+  "analyzer",
+  "column_break_1",
+  "enable_1_2s",
+  "enable_1_3s",
+  "enable_2_2s",
+  "enable_r_4s",
+  "enable_4_1s",
+  "enable_10x",
+  "section_break_2",
+  "warning_action",
+  "reject_action"
+ ],
+ "fields": [
+  {
+   "default": "WRC-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "WRC-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "analyzer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Analyzer",
+   "options": "Analyzer"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_1_2s",
+   "fieldtype": "Check",
+   "label": "1-2s Warning (Z > 2)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_1_3s",
+   "fieldtype": "Check",
+   "label": "1-3s Reject (Z > 3)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_2_2s",
+   "fieldtype": "Check",
+   "label": "2-2s Reject (2 consecutive Z > 2)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_r_4s",
+   "fieldtype": "Check",
+   "label": "R-4s Reject (range > 4s)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_4_1s",
+   "fieldtype": "Check",
+   "label": "4-1s Reject (4 consecutive Z > 1)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_10x",
+   "fieldtype": "Check",
+   "label": "10x Reject (10 consecutive same side)"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Actions"
+  },
+  {
+   "default": "Notify Technician",
+   "fieldname": "warning_action",
+   "fieldtype": "Select",
+   "label": "Warning Action",
+   "options": "Notify Technician\nNotify Pathologist\nBoth\nNone"
+  },
+  {
+   "default": "Hold Results",
+   "fieldname": "reject_action",
+   "fieldtype": "Select",
+   "label": "Reject Action",
+   "options": "Hold Results\nNotify Pathologist\nBoth"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Westgard Rule Config",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

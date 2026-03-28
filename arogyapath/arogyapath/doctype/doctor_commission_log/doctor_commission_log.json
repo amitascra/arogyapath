@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "doctor",
+  "period_from",
+  "period_to",
+  "column_break_1",
+  "branch",
+  "settlement_frequency",
+  "status",
+  "section_break_2",
+  "items",
+  "section_break_3",
+  "total_invoiced",
+  "total_commission",
+  "tds_rate",
+  "tds_amount",
+  "column_break_4",
+  "net_payable",
+  "settlement_date",
+  "payment_reference"
+ ],
+ "fields": [
+  {
+   "default": "DCL-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "DCL-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Doctor",
+   "options": "Doctor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Period From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_to",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Period To",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch"
+  },
+  {
+   "fetch_from": "doctor.settlement_frequency",
+   "fieldname": "settlement_frequency",
+   "fieldtype": "Select",
+   "label": "Settlement Frequency",
+   "options": "Monthly\nQuarterly",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nApproved\nSettled"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Invoice Details"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Invoices",
+   "options": "Commission Log Item"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Settlement Summary"
+  },
+  {
+   "fieldname": "total_invoiced",
+   "fieldtype": "Currency",
+   "label": "Total Invoiced Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_commission",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Commission",
+   "read_only": 1
+  },
+  {
+   "default": "10",
+   "fieldname": "tds_rate",
+   "fieldtype": "Float",
+   "label": "TDS Rate %",
+   "description": "TDS on professional fees u/s 194J"
+  },
+  {
+   "fieldname": "tds_amount",
+   "fieldtype": "Currency",
+   "label": "TDS Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_payable",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Payable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "settlement_date",
+   "fieldtype": "Date",
+   "label": "Settlement Date"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Doctor Commission Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,147 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:template_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "event",
+  "channel",
+  "column_break_1",
+  "is_active",
+  "section_break_whatsapp",
+  "whatsapp_template_id",
+  "whatsapp_language_code",
+  "section_break_2",
+  "subject",
+  "section_break_3",
+  "message_body",
+  "section_break_4",
+  "variables_help"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Event",
+   "options": "Report Ready\nCritical Value\nInvoice Created\nPayment Received\nSample Collected\nTAT Alert\nReagent Expiry\nAMC Expiry",
+   "reqd": 1
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Channel",
+   "options": "WhatsApp\nSMS\nEmail\nAll",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "depends_on": "eval:doc.channel == 'WhatsApp'",
+   "fieldname": "section_break_whatsapp",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp Settings"
+  },
+  {
+   "depends_on": "eval:doc.channel == 'WhatsApp'",
+   "fieldname": "whatsapp_template_id",
+   "fieldtype": "Data",
+   "label": "WhatsApp Template ID",
+   "description": "Approved template name in Meta Business Manager (e.g., report_ready_v1)"
+  },
+  {
+   "default": "en",
+   "depends_on": "eval:doc.channel == 'WhatsApp'",
+   "fieldname": "whatsapp_language_code",
+   "fieldtype": "Data",
+   "label": "Language Code",
+   "description": "e.g., en, hi, mr"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "label": "Subject",
+   "description": "For email channel only"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "message_body",
+   "fieldtype": "Text",
+   "label": "Message Body",
+   "reqd": 1,
+   "description": "Supports Jinja2: {{ patient_name }}, {{ report_url }}, {{ test_name }}, {{ lab_name }}, {{ invoice_number }}, {{ grand_total }}, {{ doctor_name }}, {{ branch_name }}"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Variable Reference"
+  },
+  {
+   "fieldname": "variables_help",
+   "fieldtype": "HTML",
+   "label": "Available Variables",
+   "options": "<div class=\"alert alert-info\"><b>Available Jinja2 variables:</b><br>Patient: <code>patient_name</code>, <code>patient_mobile</code>, <code>patient_email</code><br>Visit: <code>visit_date</code>, <code>branch_name</code><br>Report: <code>report_url</code>, <code>report_id</code><br>Order: <code>lab_order</code>, <code>test_name</code><br>Invoice: <code>invoice_number</code>, <code>grand_total</code>, <code>due_date</code><br>Doctor: <code>doctor_name</code></div>"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Notification Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

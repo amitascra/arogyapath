@@ -1,0 +1,198 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-03-28 16:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "posting_time",
+  "item",
+  "item_name",
+  "column_break_1",
+  "warehouse",
+  "actual_qty",
+  "qty_after_transaction",
+  "section_break_voucher",
+  "voucher_type",
+  "voucher_no",
+  "column_break_voucher",
+  "pathology_lab",
+  "branch",
+  "section_break_valuation",
+  "incoming_rate",
+  "outgoing_rate",
+  "stock_value",
+  "stock_value_difference",
+  "section_break_batch",
+  "batch_no",
+  "serial_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_time",
+   "fieldtype": "Time",
+   "label": "Posting Time"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Lab Branch"
+  },
+  {
+   "fieldname": "actual_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Actual Qty",
+   "reqd": 1,
+   "description": "Positive for receipt, negative for issue"
+  },
+  {
+   "fieldname": "qty_after_transaction",
+   "fieldtype": "Float",
+   "label": "Qty After Transaction",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_voucher",
+   "fieldtype": "Section Break",
+   "label": "Voucher Details"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Voucher Type",
+   "options": "Purchase Invoice\nReagent Consumption Entry\nStock Entry",
+   "reqd": 1
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Voucher No",
+   "options": "voucher_type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_voucher",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pathology_lab",
+   "fieldtype": "Link",
+   "label": "Pathology Lab",
+   "options": "Pathology Lab",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_valuation",
+   "fieldtype": "Section Break",
+   "label": "Valuation"
+  },
+  {
+   "fieldname": "incoming_rate",
+   "fieldtype": "Currency",
+   "label": "Incoming Rate"
+  },
+  {
+   "fieldname": "outgoing_rate",
+   "fieldtype": "Currency",
+   "label": "Outgoing Rate"
+  },
+  {
+   "fieldname": "stock_value",
+   "fieldtype": "Currency",
+   "label": "Stock Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_value_difference",
+   "fieldtype": "Currency",
+   "label": "Stock Value Difference",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_batch",
+   "fieldtype": "Section Break",
+   "label": "Batch & Serial"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Reagent Lot"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Small Text",
+   "label": "Serial No"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Stock Ledger Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

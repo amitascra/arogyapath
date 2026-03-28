@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:category_name",
+ "creation": "2026-03-28 15:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "category_name",
+  "section_code",
+  "rate",
+  "threshold_amount",
+  "column_break_1",
+  "description",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "category_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Category Name",
+   "reqd": 1,
+   "unique": 1,
+   "description": "e.g., 194C - Contractor"
+  },
+  {
+   "fieldname": "section_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Section Code",
+   "reqd": 1,
+   "description": "e.g., 194C, 194J"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "TDS Rate (%)",
+   "reqd": 1,
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "threshold_amount",
+   "fieldtype": "Currency",
+   "label": "Threshold Amount",
+   "description": "TDS applicable only if amount exceeds this threshold"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 15:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Tax Withholding Category",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Manager"
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

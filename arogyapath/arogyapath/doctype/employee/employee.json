@@ -1,0 +1,345 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 14:15:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pathology_lab",
+  "branch",
+  "naming_series",
+  "employee_name",
+  "user",
+  "department",
+  "column_break_1",
+  "designation",
+  "date_of_joining",
+  "date_of_birth",
+  "gender",
+  "employment_type",
+  "status",
+  "section_break_contact",
+  "personal_email",
+  "company_email",
+  "mobile",
+  "column_break_contact",
+  "emergency_contact_name",
+  "emergency_contact_number",
+  "section_break_professional",
+  "qualification",
+  "registration_number",
+  "registration_council",
+  "specialization",
+  "column_break_professional",
+  "reporting_manager",
+  "section_break_roles",
+  "assigned_roles",
+  "section_break_signature",
+  "signature_image",
+  "designation_for_reports",
+  "section_break_salary",
+  "basic_salary",
+  "bank_account",
+  "ifsc",
+  "pan",
+  "section_break_status",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "default": "EMP-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "EMP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "reqd": 1
+  },
+  {
+   "description": "Link to Frappe User account",
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "User",
+   "options": "User",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "link_filters": "[[\"Lab Branch\",\"pathology_lab\",\"=\",\"value\"]]",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Lab Department"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Select",
+   "label": "Designation",
+   "options": "\nLab Manager\nPathologist\nTechnician\nReceptionist\nAdmin\nOther"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOther"
+  },
+  {
+   "fieldname": "employment_type",
+   "fieldtype": "Select",
+   "label": "Employment Type",
+   "options": "\nFull Time\nPart Time\nContract\nConsultant"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nOn Leave\nResigned\nTerminated",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "personal_email",
+   "fieldtype": "Data",
+   "label": "Personal Email",
+   "options": "Email"
+  },
+  {
+   "fetch_from": "user.email",
+   "fieldname": "company_email",
+   "fieldtype": "Data",
+   "label": "Company Email",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emergency_contact_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Name"
+  },
+  {
+   "fieldname": "emergency_contact_number",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "section_break_professional",
+   "fieldtype": "Section Break",
+   "label": "Professional Details"
+  },
+  {
+   "description": "e.g., MD Pathology, BSc MLT",
+   "fieldname": "qualification",
+   "fieldtype": "Data",
+   "label": "Qualification"
+  },
+  {
+   "description": "Medical council registration number for pathologists",
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  },
+  {
+   "description": "e.g., Medical Council of India",
+   "fieldname": "registration_council",
+   "fieldtype": "Data",
+   "label": "Registration Council"
+  },
+  {
+   "fieldname": "specialization",
+   "fieldtype": "Data",
+   "label": "Specialization"
+  },
+  {
+   "fieldname": "column_break_professional",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reporting_manager",
+   "fieldtype": "Link",
+   "label": "Reporting Manager",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_roles",
+   "fieldtype": "Section Break",
+   "label": "Role Assignment"
+  },
+  {
+   "description": "Roles will be automatically synced to User account",
+   "fieldname": "assigned_roles",
+   "fieldtype": "Table",
+   "label": "Assigned Roles",
+   "options": "Employee Role"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_signature",
+   "fieldtype": "Section Break",
+   "label": "Signature (For Pathologists)"
+  },
+  {
+   "description": "PNG with transparent background for report signing",
+   "fieldname": "signature_image",
+   "fieldtype": "Attach Image",
+   "label": "Signature Image"
+  },
+  {
+   "description": "e.g., MD (Pathology), DNB",
+   "fieldname": "designation_for_reports",
+   "fieldtype": "Data",
+   "label": "Designation for Reports"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_salary",
+   "fieldtype": "Section Break",
+   "label": "Salary & Banking"
+  },
+  {
+   "fieldname": "basic_salary",
+   "fieldtype": "Currency",
+   "label": "Basic Salary"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "fieldname": "ifsc",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "description": "Permanent Account Number",
+   "fieldname": "pan",
+   "fieldtype": "Data",
+   "label": "PAN"
+  },
+  {
+   "fieldname": "section_break_status",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "pathology_lab",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Pathology Lab",
+   "options": "Pathology Lab",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 19:50:02.887768",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Employee",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Technician",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Reception",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name",
+ "track_changes": 1
+}

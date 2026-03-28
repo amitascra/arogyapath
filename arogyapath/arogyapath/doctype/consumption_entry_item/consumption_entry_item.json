@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reagent",
+  "reagent_name",
+  "lot",
+  "column_break_1",
+  "quantity_used",
+  "unit_of_measure",
+  "test"
+ ],
+ "fields": [
+  {
+   "fieldname": "reagent",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reagent",
+   "options": "Reagent",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "reagent.reagent_name",
+   "fieldname": "reagent_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reagent Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lot",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lot",
+   "options": "Reagent Lot",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quantity_used",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity Used",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "reagent.unit_of_measure",
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Data",
+   "label": "Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Link",
+   "label": "Test",
+   "options": "Lab Test Master",
+   "description": "Optional — for test-specific tracking"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Consumption Entry Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

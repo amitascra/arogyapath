@@ -1,0 +1,370 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "lab_order",
+  "patient",
+  "patient_name",
+  "invoice_date",
+  "column_break_1",
+  "branch",
+  "referred_by",
+  "corporate_account",
+  "discount_scheme",
+  "status",
+  "section_break_gst",
+  "gst_category",
+  "patient_gstin",
+  "billing_address_gstin",
+  "column_break_gst",
+  "company_gstin",
+  "place_of_supply",
+  "is_interstate",
+  "section_break_tax_template",
+  "tax_category",
+  "taxes_and_charges",
+  "section_break_3",
+  "items",
+  "section_break_taxes",
+  "taxes",
+  "section_break_4",
+  "gross_amount",
+  "total_discount",
+  "taxable_amount",
+  "column_break_5",
+  "total_cgst",
+  "total_sgst",
+  "total_igst",
+  "total_tax",
+  "grand_total",
+  "section_break_payment",
+  "outstanding_amount",
+  "payment_status",
+  "section_break_8",
+  "commission_amount",
+  "commission_settled"
+ ],
+ "fields": [
+  {
+   "default": "INV-.BRANCH.-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "INV-.BRANCH.-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lab_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lab Order",
+   "options": "Lab Order",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lab_order.patient",
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "label": "Patient",
+   "options": "Patient",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "lab_order.patient_name",
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Patient Name",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "lab_order.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Lab Branch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "lab_order.referred_by",
+   "fieldname": "referred_by",
+   "fieldtype": "Link",
+   "label": "Referred By",
+   "options": "Doctor"
+  },
+  {
+   "fieldname": "corporate_account",
+   "fieldtype": "Link",
+   "label": "Corporate Account",
+   "options": "Corporate Account",
+   "description": "If B2B billing"
+  },
+  {
+   "fieldname": "discount_scheme",
+   "fieldtype": "Link",
+   "label": "Discount Scheme",
+   "options": "Discount Scheme"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nUnpaid\nPartially Paid\nPaid\nCancelled"
+  },
+  {
+   "fieldname": "section_break_gst",
+   "fieldtype": "Section Break",
+   "label": "GST Details"
+  },
+  {
+   "default": "Unregistered",
+   "fieldname": "gst_category",
+   "fieldtype": "Select",
+   "label": "GST Category",
+   "options": "Unregistered\nRegistered Regular\nRegistered Composition\nSEZ\nOverseas\nDeemed Export",
+   "description": "Determines GST applicability"
+  },
+  {
+   "fieldname": "patient_gstin",
+   "fieldtype": "Data",
+   "label": "Patient/Company GSTIN",
+   "description": "Required for B2B GST invoice"
+  },
+  {
+   "fieldname": "billing_address_gstin",
+   "fieldtype": "Data",
+   "label": "Billing Address GSTIN",
+   "read_only": 1,
+   "description": "Fetched from patient/corporate address"
+  },
+  {
+   "fieldname": "column_break_gst",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company_gstin",
+   "fieldtype": "Data",
+   "label": "Lab GSTIN",
+   "read_only": 1,
+   "description": "Fetched from lab branch"
+  },
+  {
+   "fieldname": "place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply",
+   "read_only": 1,
+   "description": "Auto-calculated from address"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_interstate",
+   "fieldtype": "Check",
+   "label": "Is Interstate",
+   "read_only": 1,
+   "description": "Auto-calculated from GSTINs"
+  },
+  {
+   "fieldname": "section_break_tax_template",
+   "fieldtype": "Section Break",
+   "label": "Tax Template"
+  },
+  {
+   "fieldname": "tax_category",
+   "fieldtype": "Link",
+   "label": "Tax Category",
+   "options": "Tax Category",
+   "read_only": 1,
+   "description": "Auto-set based on GST category"
+  },
+  {
+   "fieldname": "taxes_and_charges",
+   "fieldtype": "Link",
+   "label": "Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template",
+   "description": "Tax template for GST calculation"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Lab Invoice Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_taxes",
+   "fieldtype": "Section Break",
+   "label": "Tax Details"
+  },
+  {
+   "fieldname": "taxes",
+   "fieldtype": "Table",
+   "label": "Taxes",
+   "options": "Sales Taxes and Charges"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "gross_amount",
+   "fieldtype": "Currency",
+   "label": "Gross Amount (MRP)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_discount",
+   "fieldtype": "Currency",
+   "label": "Total Discount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "taxable_amount",
+   "fieldtype": "Currency",
+   "label": "Taxable Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_cgst",
+   "fieldtype": "Currency",
+   "label": "Total CGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_sgst",
+   "fieldtype": "Currency",
+   "label": "Total SGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_igst",
+   "fieldtype": "Currency",
+   "label": "Total IGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_tax",
+   "fieldtype": "Currency",
+   "label": "Total Tax",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_payment",
+   "fieldtype": "Section Break",
+   "label": "Payment Status"
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Outstanding Amount",
+   "read_only": 1
+  },
+  {
+   "default": "Unpaid",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "options": "Unpaid\nPartly Paid\nPaid",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Doctor Commission"
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Currency",
+   "label": "Commission Amount",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "commission_settled",
+   "fieldtype": "Check",
+   "label": "Commission Settled",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Invoice",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Reception",
+   "write": 1
+  }
+ ],
+ "search_fields": "patient,patient_name,branch,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient_name",
+ "track_changes": 1
+}

@@ -1,0 +1,502 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"arogyapath_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"sc_patient\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Patient\",\"col\":3}},{\"id\":\"sc_lab_order\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Order\",\"col\":3}},{\"id\":\"sc_lab_result\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Result\",\"col\":3}},{\"id\":\"sc_lab_invoice\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Invoice\",\"col\":3}},{\"id\":\"sc_sample_collection\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sample Collection\",\"col\":3}},{\"id\":\"sc_lab_report\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Report\",\"col\":3}},{\"id\":\"sc_qc_result\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"QC Result\",\"col\":3}},{\"id\":\"sc_calibration\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Equipment Calibration Log\",\"col\":3}},{\"id\":\"sp_1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"arogyapath_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Modules</b></span>\",\"col\":12}},{\"id\":\"card_registration\",\"type\":\"card\",\"data\":{\"card_name\":\"Patient Registration\",\"col\":4}},{\"id\":\"card_lab\",\"type\":\"card\",\"data\":{\"card_name\":\"Lab Operations\",\"col\":4}},{\"id\":\"card_billing\",\"type\":\"card\",\"data\":{\"card_name\":\"Billing\",\"col\":4}},{\"id\":\"card_masters\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"card_qc\",\"type\":\"card\",\"data\":{\"card_name\":\"Quality Control\",\"col\":4}},{\"id\":\"card_inventory\",\"type\":\"card\",\"data\":{\"card_name\":\"Reagent Inventory\",\"col\":4}},{\"id\":\"card_nabl\",\"type\":\"card\",\"data\":{\"card_name\":\"NABL & Calibration\",\"col\":4}},{\"id\":\"card_settings\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings & Templates\",\"col\":4}}]",
+ "creation": "2026-03-27 17:00:00",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "healthcare",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "ArogyaPath",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Patient Registration",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Patient",
+   "link_count": 0,
+   "link_to": "Patient",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Patient Visit",
+   "link_count": 0,
+   "link_to": "Patient Visit",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctor",
+   "link_count": 0,
+   "link_to": "Doctor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Collection Center",
+   "link_count": 0,
+   "link_to": "Collection Center",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Operations",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Order",
+   "link_count": 0,
+   "link_to": "Lab Order",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sample Collection",
+   "link_count": 0,
+   "link_to": "Sample Collection",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Result",
+   "link_count": 0,
+   "link_to": "Lab Result",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Report",
+   "link_count": 0,
+   "link_to": "Lab Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Billing",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Invoice",
+   "link_count": 0,
+   "link_to": "Lab Invoice",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Corporate Account",
+   "link_count": 0,
+   "link_to": "Corporate Account",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Discount Scheme",
+   "link_count": 0,
+   "link_to": "Discount Scheme",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctor Commission Log",
+   "link_count": 0,
+   "link_to": "Doctor Commission Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quality Control",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "QC Result",
+   "link_count": 0,
+   "link_to": "QC Result",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "QC Material",
+   "link_count": 0,
+   "link_to": "QC Material",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Westgard Rule Config",
+   "link_count": 0,
+   "link_to": "Westgard Rule Config",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Analyzer",
+   "link_count": 0,
+   "link_to": "Analyzer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reagent Inventory",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reagent Lot",
+   "link_count": 0,
+   "link_to": "Reagent Lot",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reagent Consumption Entry",
+   "link_count": 0,
+   "link_to": "Reagent Consumption Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reagent",
+   "link_count": 0,
+   "link_to": "Reagent",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings & Templates",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Notification Template",
+   "link_count": 0,
+   "link_to": "Notification Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Report Header Config",
+   "link_count": 0,
+   "link_to": "Report Header Config",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Report Template",
+   "link_count": 0,
+   "link_to": "Lab Report Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "NABL & Calibration",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Equipment Calibration Log",
+   "link_count": 0,
+   "link_to": "Equipment Calibration Log",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Analyzer",
+   "link_count": 0,
+   "link_to": "Analyzer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 7,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Test Master",
+   "link_count": 0,
+   "link_to": "Lab Test Master",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Test Panel",
+   "link_count": 0,
+   "link_to": "Lab Test Panel",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sample Type",
+   "link_count": 0,
+   "link_to": "Sample Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Department",
+   "link_count": 0,
+   "link_to": "Lab Department",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Branch",
+   "link_count": 0,
+   "link_to": "Lab Branch",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Test UOM",
+   "link_count": 0,
+   "link_to": "Lab Test UOM",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lab Settings",
+   "link_count": 0,
+   "link_to": "Lab Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-03-28 20:17:46.834773",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "ArogyaPath",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "Lab Admin"
+  },
+  {
+   "role": "Lab Manager"
+  },
+  {
+   "role": "Lab Technician"
+  },
+  {
+   "role": "Lab Pathologist"
+  },
+  {
+   "role": "Lab Reception"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "label": "Patient",
+   "link_to": "Patient",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "label": "Lab Order",
+   "link_to": "Lab Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Lab Result",
+   "link_to": "Lab Result",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "label": "Lab Invoice",
+   "link_to": "Lab Invoice",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "label": "Sample Collection",
+   "link_to": "Sample Collection",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "label": "Lab Report",
+   "link_to": "Lab Report",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "label": "QC Result",
+   "link_to": "QC Result",
+   "type": "DocType"
+  },
+  {
+   "color": "Gray",
+   "label": "Equipment Calibration Log",
+   "link_to": "Equipment Calibration Log",
+   "type": "DocType"
+  }
+ ],
+ "title": "ArogyaPath"
+}

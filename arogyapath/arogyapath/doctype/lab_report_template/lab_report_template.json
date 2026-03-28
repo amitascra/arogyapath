@@ -1,0 +1,139 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:template_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "department",
+  "column_break_1",
+  "header_config",
+  "watermark_text",
+  "section_break_2",
+  "show_reference_ranges",
+  "show_methodology",
+  "show_clinical_comment",
+  "section_break_3",
+  "jinja_template",
+  "section_break_4",
+  "css_style"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "description": "Optional — can be generic"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "header_config",
+   "fieldtype": "Link",
+   "label": "Report Header Config",
+   "options": "Report Header Config"
+  },
+  {
+   "fieldname": "watermark_text",
+   "fieldtype": "Data",
+   "label": "Watermark Text",
+   "description": "e.g., Not valid without pathologist signature"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Display Options"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_reference_ranges",
+   "fieldtype": "Check",
+   "label": "Show Reference Ranges"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_methodology",
+   "fieldtype": "Check",
+   "label": "Show Methodology"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_clinical_comment",
+   "fieldtype": "Check",
+   "label": "Show Clinical Comment"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Jinja2 Template"
+  },
+  {
+   "fieldname": "jinja_template",
+   "fieldtype": "Code",
+   "label": "Jinja2 HTML Template",
+   "options": "Jinja"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "CSS Styles"
+  },
+  {
+   "fieldname": "css_style",
+   "fieldtype": "Code",
+   "label": "CSS Style",
+   "options": "CSS"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Report Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

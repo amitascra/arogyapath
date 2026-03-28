@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "default_lab",
+  "default_branch",
+  "default_tat_hours",
+  "column_break_1",
+  "default_gst_rate",
+  "default_sac_code",
+  "section_break_2",
+  "whatsapp_provider",
+  "whatsapp_api_key",
+  "whatsapp_phone_id",
+  "column_break_3",
+  "sms_provider",
+  "sms_api_key",
+  "section_break_4",
+  "report_portal_url",
+  "auto_release_normal",
+  "critical_alert_mode",
+  "column_break_5",
+  "barcode_format",
+  "invoice_prefix",
+  "fiscal_year_start"
+ ],
+ "fields": [
+  {
+   "fieldname": "default_lab",
+   "fieldtype": "Link",
+   "label": "Default Pathology Lab",
+   "options": "Pathology Lab",
+   "reqd": 1
+  },
+  {
+   "fieldname": "default_branch",
+   "fieldtype": "Link",
+   "label": "Default Branch",
+   "options": "Lab Branch"
+  },
+  {
+   "default": "24",
+   "fieldname": "default_tat_hours",
+   "fieldtype": "Int",
+   "label": "Default TAT Hours"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "18",
+   "fieldname": "default_gst_rate",
+   "fieldtype": "Float",
+   "label": "Default GST Rate %"
+  },
+  {
+   "default": "999316",
+   "fieldname": "default_sac_code",
+   "fieldtype": "Data",
+   "label": "Default SAC Code"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp & SMS Settings"
+  },
+  {
+   "fieldname": "whatsapp_provider",
+   "fieldtype": "Select",
+   "label": "WhatsApp Provider",
+   "options": "\nMeta Cloud API\nTwilio\nMSG91"
+  },
+  {
+   "fieldname": "whatsapp_api_key",
+   "fieldtype": "Password",
+   "label": "WhatsApp API Key"
+  },
+  {
+   "fieldname": "whatsapp_phone_id",
+   "fieldtype": "Data",
+   "label": "WhatsApp Phone Number ID"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sms_provider",
+   "fieldtype": "Select",
+   "label": "SMS Provider",
+   "options": "\nMSG91\nFast2SMS\nTwilio"
+  },
+  {
+   "fieldname": "sms_api_key",
+   "fieldtype": "Password",
+   "label": "SMS API Key"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Report & Workflow Settings"
+  },
+  {
+   "fieldname": "report_portal_url",
+   "fieldtype": "Data",
+   "label": "Report Portal URL",
+   "description": "Base URL for patient report access via QR code"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_release_normal",
+   "fieldtype": "Check",
+   "label": "Auto Release Normal Results"
+  },
+  {
+   "fieldname": "critical_alert_mode",
+   "fieldtype": "Select",
+   "label": "Critical Alert Mode",
+   "options": "WhatsApp\nSMS\nBoth"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Code128",
+   "fieldname": "barcode_format",
+   "fieldtype": "Select",
+   "label": "Barcode Format",
+   "options": "Code128\nQR\nCode39"
+  },
+  {
+   "fieldname": "invoice_prefix",
+   "fieldtype": "Data",
+   "label": "Invoice Prefix Override"
+  },
+  {
+   "default": "April",
+   "fieldname": "fiscal_year_start",
+   "fieldtype": "Select",
+   "label": "Fiscal Year Start",
+   "options": "April\nJanuary"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Lab Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

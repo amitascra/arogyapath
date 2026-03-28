@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:reagent_code",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reagent_name",
+  "reagent_code",
+  "department",
+  "column_break_1",
+  "unit_of_measure",
+  "reorder_level",
+  "storage_temp",
+  "is_active",
+  "section_break_2",
+  "manufacturer",
+  "catalog_number",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "reagent_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reagent Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reagent_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reagent Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Lab Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Select",
+   "label": "Unit of Measure",
+   "options": "mL\nL\ng\nKg\nVial\nKit\nStrip",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "reorder_level",
+   "fieldtype": "Float",
+   "label": "Reorder Level"
+  },
+  {
+   "fieldname": "storage_temp",
+   "fieldtype": "Select",
+   "label": "Storage Temperature",
+   "options": "Room Temp\n2-8°C\n-20°C\n-80°C"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Manufacturer Details"
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Data",
+   "label": "Manufacturer"
+  },
+  {
+   "fieldname": "catalog_number",
+   "fieldtype": "Data",
+   "label": "Catalog Number"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Reagent",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,185 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:doctor_name",
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "doctor_name",
+  "doctor_code",
+  "specialization",
+  "column_break_1",
+  "hospital_clinic",
+  "mobile",
+  "email",
+  "section_break_2",
+  "commission_type",
+  "commission_rate",
+  "commission_on",
+  "settlement_frequency",
+  "section_break_3",
+  "gstin",
+  "pan",
+  "column_break_4",
+  "bank_account",
+  "ifsc",
+  "section_break_5",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "doctor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Doctor Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "doctor_code",
+   "fieldtype": "Data",
+   "label": "Doctor Code",
+   "description": "Short code for doctor"
+  },
+  {
+   "fieldname": "specialization",
+   "fieldtype": "Data",
+   "label": "Specialization"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hospital_clinic",
+   "fieldtype": "Data",
+   "label": "Hospital/Clinic"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Commission Details"
+  },
+  {
+   "default": "None",
+   "fieldname": "commission_type",
+   "fieldtype": "Select",
+   "label": "Commission Type",
+   "options": "None\nPercentage\nFixed Per Test"
+  },
+  {
+   "depends_on": "eval:doc.commission_type!='None'",
+   "fieldname": "commission_rate",
+   "fieldtype": "Float",
+   "label": "Commission Rate",
+   "description": "% or fixed amount"
+  },
+  {
+   "depends_on": "eval:doc.commission_type=='Percentage'",
+   "default": "Net",
+   "fieldname": "commission_on",
+   "fieldtype": "Select",
+   "label": "Commission On",
+   "options": "Gross\nNet"
+  },
+  {
+   "depends_on": "eval:doc.commission_type!='None'",
+   "default": "Monthly",
+   "fieldname": "settlement_frequency",
+   "fieldtype": "Select",
+   "label": "Settlement Frequency",
+   "options": "Monthly\nQuarterly"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Tax & Banking Details"
+  },
+  {
+   "fieldname": "gstin",
+   "fieldtype": "Data",
+   "label": "GSTIN",
+   "description": "If doctor claims GST input"
+  },
+  {
+   "fieldname": "pan",
+   "fieldtype": "Data",
+   "label": "PAN",
+   "description": "For TDS deduction"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Data",
+   "label": "Bank Account Number"
+  },
+  {
+   "fieldname": "ifsc",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Doctor",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Reception"
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

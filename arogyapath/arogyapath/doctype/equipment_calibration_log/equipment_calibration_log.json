@@ -1,0 +1,187 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-03-27 18:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "analyzer",
+  "calibration_date",
+  "column_break_1",
+  "next_due_date",
+  "calibration_result",
+  "section_break_2",
+  "calibrated_by",
+  "vendor_name",
+  "column_break_3",
+  "certificate_number",
+  "certificate_attachment",
+  "section_break_4",
+  "parameters_checked",
+  "column_break_5",
+  "traceability_standard",
+  "section_break_6",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "CALIB-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CALIB-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "analyzer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Analyzer",
+   "options": "Analyzer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "calibration_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Calibration Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "next_due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Due Date",
+   "reqd": 1
+  },
+  {
+   "default": "Pass",
+   "fieldname": "calibration_result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Calibration Result",
+   "options": "Pass\nFail\nConditional Pass",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Performed By"
+  },
+  {
+   "fieldname": "calibrated_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Calibrated By",
+   "reqd": 1,
+   "description": "Name of person or external vendor who performed calibration"
+  },
+  {
+   "fieldname": "vendor_name",
+   "fieldtype": "Data",
+   "label": "Vendor / Agency"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "certificate_number",
+   "fieldtype": "Data",
+   "label": "Certificate Number"
+  },
+  {
+   "fieldname": "certificate_attachment",
+   "fieldtype": "Attach",
+   "label": "Certificate Attachment"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "parameters_checked",
+   "fieldtype": "Small Text",
+   "label": "Parameters Checked",
+   "description": "List of parameters verified during calibration"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "traceability_standard",
+   "fieldtype": "Data",
+   "label": "Traceability Standard",
+   "description": "e.g., NIST SRM, WHO Reference Standard"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-03-27 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Equipment Calibration Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Lab Technician"
+  },
+  {
+   "read": 1,
+   "role": "Lab Pathologist"
+  }
+ ],
+ "sort_field": "calibration_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "analyzer",
+ "track_changes": 1
+}

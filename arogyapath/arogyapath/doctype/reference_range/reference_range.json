@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "creation": "2026-03-27 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "parameter",
+  "gender",
+  "age_from",
+  "age_from_type",
+  "age_to",
+  "age_to_type",
+  "age_from_days",
+  "age_to_days",
+  "column_break_1",
+  "normal_min",
+  "normal_max",
+  "critical_min",
+  "critical_max",
+  "column_break_2",
+  "normal_text",
+  "reference_display_text",
+  "unit"
+ ],
+ "fields": [
+  {
+   "fieldname": "parameter",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Parameter",
+   "reqd": 1
+  },
+  {
+   "default": "Both",
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Gender",
+   "options": "Both\nMale\nFemale"
+  },
+  {
+   "default": "0",
+   "fieldname": "age_from",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Age From",
+   "description": "Minimum age for this range"
+  },
+  {
+   "default": "Years",
+   "fieldname": "age_from_type",
+   "fieldtype": "Select",
+   "label": "Age From Unit",
+   "options": "Days\nMonths\nYears"
+  },
+  {
+   "default": "100",
+   "fieldname": "age_to",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Age To"
+  },
+  {
+   "default": "Years",
+   "fieldname": "age_to_type",
+   "fieldtype": "Select",
+   "label": "Age To Unit",
+   "options": "Days\nMonths\nYears"
+  },
+  {
+   "default": "0",
+   "fieldname": "age_from_days",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Age From (Days)",
+   "read_only": 1,
+   "description": "Auto-computed from Age From + Age From Type"
+  },
+  {
+   "default": "36500",
+   "fieldname": "age_to_days",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Age To (Days)",
+   "read_only": 1,
+   "description": "Auto-computed from Age To + Age To Type"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "normal_min",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Normal Min"
+  },
+  {
+   "fieldname": "normal_max",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Normal Max"
+  },
+  {
+   "fieldname": "critical_min",
+   "fieldtype": "Float",
+   "label": "Critical Min",
+   "description": "Panic low — triggers critical alert"
+  },
+  {
+   "fieldname": "critical_max",
+   "fieldtype": "Float",
+   "label": "Critical Max",
+   "description": "Panic high — triggers critical alert"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "normal_text",
+   "fieldtype": "Data",
+   "label": "Normal Text",
+   "description": "For text/Positive-Negative parameters (e.g., Negative, Absent)"
+  },
+  {
+   "fieldname": "reference_display_text",
+   "fieldtype": "Data",
+   "label": "Display Text",
+   "description": "Override display on report (e.g., 70-110 or < 200). Auto-built if blank."
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "label": "Unit Override",
+   "options": "Lab Test UOM",
+   "description": "Override unit for this age/gender range if different from parameter default"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-27 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ArogyaPath",
+ "name": "Reference Range",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

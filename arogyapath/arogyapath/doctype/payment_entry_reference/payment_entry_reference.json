@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-03-28 14:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_doctype",
+  "reference_name",
+  "total_amount",
+  "outstanding_amount",
+  "allocated_amount",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Reference DocType",
+   "options": "Lab Invoice\nPurchase Invoice\nDoctor Commission Log\nSales Return\nPurchase Return",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Reference Name",
+   "options": "reference_doctype",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Outstanding Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "allocated_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Allocated Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-28 14:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Payment Entry Reference",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

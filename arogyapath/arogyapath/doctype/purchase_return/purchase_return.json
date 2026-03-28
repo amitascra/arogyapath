@@ -1,0 +1,248 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "naming_series:",
+ "creation": "2026-03-28 15:15:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "is_submittable": 1,
+ "field_order": [
+  "naming_series",
+  "return_against",
+  "supplier",
+  "supplier_name",
+  "posting_date",
+  "column_break_1",
+  "branch",
+  "return_type",
+  "section_break_items",
+  "items",
+  "section_break_totals",
+  "total_qty",
+  "base_total",
+  "column_break_totals",
+  "total_cgst",
+  "total_sgst",
+  "total_igst",
+  "total_tax",
+  "section_break_grand",
+  "grand_total",
+  "in_words",
+  "column_break_grand",
+  "outstanding_amount",
+  "return_status",
+  "section_break_reason",
+  "return_reason",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "DN-.BRANCH.-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "DN-.BRANCH.-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "return_against",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Return Against",
+   "options": "Purchase Invoice",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "return_against.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "return_against.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "return_against.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Lab Branch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "return_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Return Type",
+   "options": "Full Return\nPartial Return\nDamaged Goods\nQuality Issue\nWrong Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_items",
+   "fieldtype": "Section Break",
+   "label": "Return Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Purchase Return Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_totals",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "total_qty",
+   "fieldtype": "Float",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_total",
+   "fieldtype": "Currency",
+   "label": "Base Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_totals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_cgst",
+   "fieldtype": "Currency",
+   "label": "Total CGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_sgst",
+   "fieldtype": "Currency",
+   "label": "Total SGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_igst",
+   "fieldtype": "Currency",
+   "label": "Total IGST",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_tax",
+   "fieldtype": "Currency",
+   "label": "Total Tax",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_grand",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "in_words",
+   "fieldtype": "Data",
+   "label": "In Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_grand",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "label": "Outstanding Amount",
+   "read_only": 1,
+   "description": "Amount to be adjusted from supplier"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "return_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Return Status",
+   "options": "Pending\nAdjusted\nRefunded",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_reason",
+   "fieldtype": "Section Break",
+   "label": "Return Details"
+  },
+  {
+   "fieldname": "return_reason",
+   "fieldtype": "Select",
+   "label": "Return Reason",
+   "options": "\nDamaged goods\nExpired items\nWrong item received\nQuality issue\nOvercharge\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-28 15:15:00.000000",
+ "modified_by": "Administrator",
+ "module": "arogyapath",
+ "name": "Purchase Return",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lab Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Lab Manager",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "supplier,supplier_name,return_against,return_type",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "supplier_name",
+ "track_changes": 1
+}

@@ -1,0 +1,42 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"lo_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Lab Operations Overview</b></span>\",\"col\":12}},{\"id\":\"lo_kpi1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Results\",\"col\":3}},{\"id\":\"lo_kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Today\",\"col\":3}},{\"id\":\"lo_kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Critical Results\",\"col\":3}},{\"id\":\"lo_kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Reports Generated\",\"col\":3}},{\"id\":\"lo_spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"lo_shortcuts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"lo_sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Order\",\"col\":3}},{\"id\":\"lo_sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Result\",\"col\":3}},{\"id\":\"lo_sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lab Report\",\"col\":3}},{\"id\":\"lo_sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sample Collection\",\"col\":3}},{\"id\":\"lo_spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"lo_cards\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Lab Operations</b></span>\",\"col\":12}},{\"id\":\"lo_card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Test Processing\",\"col\":4}},{\"id\":\"lo_card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Results & Reports\",\"col\":4}},{\"id\":\"lo_card3\",\"type\":\"card\",\"data\":{\"card_name\":\"Test Masters\",\"col\":4}}]",
+ "creation": "2026-03-28 16:20:00.000000",
+ "doctype": "Workspace",
+ "icon": "lab-test",
+ "label": "Lab Operations",
+ "links": [
+  {"hidden": 0, "label": "Test Processing", "type": "Card Break"},
+  {"label": "Lab Order", "link_to": "Lab Order", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Sample Collection", "link_to": "Sample Collection", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Lab Result", "link_to": "Lab Result", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"hidden": 0, "label": "Results & Reports", "type": "Card Break"},
+  {"label": "Lab Report", "link_to": "Lab Report", "link_type": "DocType", "type": "Link"},
+  {"label": "Pathologist Signature", "link_to": "Pathologist Signature", "link_type": "DocType", "type": "Link"},
+  {"label": "Lab Report Template", "link_to": "Lab Report Template", "link_type": "DocType", "type": "Link"},
+  {"label": "Report Header Config", "link_to": "Report Header Config", "link_type": "DocType", "type": "Link"},
+  {"hidden": 0, "label": "Test Masters", "type": "Card Break"},
+  {"label": "Lab Test Master", "link_to": "Lab Test Master", "link_type": "DocType", "onboard": 1, "type": "Link"},
+  {"label": "Lab Test Panel", "link_to": "Lab Test Panel", "link_type": "DocType", "type": "Link"},
+  {"label": "Lab Department", "link_to": "Lab Department", "link_type": "DocType", "type": "Link"},
+  {"label": "Lab Test UOM", "link_to": "Lab Test UOM", "link_type": "DocType", "type": "Link"}
+ ],
+ "module": "ArogyaPath",
+ "name": "Lab Operations",
+ "number_cards": [
+  {"label": "Pending Results", "method": "arogyapath.arogyapath.workspace_utils.get_pending_results_count", "doctype": "Lab Result"},
+  {"label": "Completed Today", "method": "arogyapath.arogyapath.workspace_utils.get_completed_results_today", "doctype": "Lab Result"},
+  {"label": "Critical Results", "method": "arogyapath.arogyapath.workspace_utils.get_critical_results", "doctype": "Lab Result"},
+  {"label": "Reports Generated", "method": "arogyapath.arogyapath.workspace_utils.get_reports_generated_today", "doctype": "Lab Report"}
+ ],
+ "public": 1,
+ "roles": [{"role": "Lab Admin"}, {"role": "Lab Manager"}, {"role": "Lab Technician"}, {"role": "Lab Pathologist"}],
+ "sequence_id": 3.0,
+ "shortcuts": [
+  {"color": "Purple", "label": "Lab Order", "link_to": "Lab Order", "type": "DocType"},
+  {"color": "Green", "label": "Lab Result", "link_to": "Lab Result", "type": "DocType"},
+  {"color": "Blue", "label": "Lab Report", "link_to": "Lab Report", "type": "DocType"},
+  {"color": "Orange", "label": "Sample Collection", "link_to": "Sample Collection", "type": "DocType"}
+ ],
+ "title": "Lab Operations"
+}

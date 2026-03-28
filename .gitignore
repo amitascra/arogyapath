@@ -2,6 +2,7 @@
 *.pyc
 *.egg-info
 *.swp
+arogyapath/App-Research/
 tags
 node_modules
 __pycache__
