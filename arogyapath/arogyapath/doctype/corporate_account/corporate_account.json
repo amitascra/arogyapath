@@ -9,9 +9,7 @@
  "field_order": [
   "company_name",
   "company_code",
-  "gst_category",
   "gstin",
-  "pan",
   "column_break_1",
   "billing_address",
   "contact_person",
@@ -40,25 +38,11 @@
    "description": "Short code for naming series"
   },
   {
-   "default": "Registered Regular",
-   "fieldname": "gst_category",
-   "fieldtype": "Select",
-   "label": "GST Category",
-   "options": "Unregistered\nRegistered Regular\nRegistered Composition\nSEZ\nOverseas",
-   "description": "Determines GST applicability"
-  },
-  {
    "fieldname": "gstin",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "GSTIN",
-   "description": "Required for B2B GST invoice"
-  },
-  {
-   "fieldname": "pan",
-   "fieldtype": "Data",
-   "label": "PAN",
-   "description": "10-digit Permanent Account Number"
+   "description": "GST Identification Number (master reference)"
   },
   {
    "fieldname": "column_break_1",

@@ -2,15 +2,14 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:category_name",
- "creation": "2026-03-28 17:20:00.000000",
+ "creation": "2026-03-29 17:00:00.000000",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "category_name",
   "is_inter_state",
-  "column_break_1",
   "is_reverse_charge",
+  "column_break_1",
   "gst_state",
   "disabled"
  ],
@@ -19,7 +18,7 @@
    "fieldname": "category_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Tax Category Name",
+   "label": "Category Name",
    "reqd": 1,
    "unique": 1
   },
@@ -31,20 +30,21 @@
    "label": "Is Inter State"
   },
   {
-   "fieldname": "column_break_1",
-   "fieldtype": "Column Break"
-  },
-  {
    "default": "0",
    "fieldname": "is_reverse_charge",
    "fieldtype": "Check",
    "label": "Is Reverse Charge"
   },
   {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "gst_state",
-   "fieldtype": "Data",
-   "label": "GST State",
-   "description": "Specific state for this category (optional)"
+   "fieldtype": "Select",
+   "label": "Source State (optional)",
+   "options": "\nAndaman and Nicobar Islands\nAndhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChandigarh\nChhattisgarh\nDadra and Nagar Haveli and Daman and Diu\nDelhi\nGoa\nGujarat\nHaryana\nHimachal Pradesh\nJammu and Kashmir\nJharkhand\nKarnataka\nKerala\nLadakh\nLakshadweep\nMadhya Pradesh\nMaharashtra\nManipur\nMeghalaya\nMizoram\nNagaland\nOdisha\nPuducherry\nPunjab\nRajasthan\nSikkim\nTamil Nadu\nTelangana\nTripura\nUttar Pradesh\nUttarakhand\nWest Bengal",
+   "description": "Leave blank for generic. Set if this category applies to a specific state only."
   },
   {
    "default": "0",
@@ -53,25 +53,21 @@
    "label": "Disabled"
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-28 17:20:00.000000",
+ "modified": "2026-03-29 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "ArogyaPath",
- "name": "Tax Category",
+ "name": "Lab Tax Category",
  "naming_rule": "By fieldname",
+ "search_fields": "category_name",
  "owner": "Administrator",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "Lab Admin",
-   "share": 1,
    "write": 1
   },
   {
@@ -80,7 +76,8 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
+ "sort_order": "ASC",
  "states": [],
- "track_changes": 1
+ "title_field": "category_name",
+ "track_changes": 0
 }

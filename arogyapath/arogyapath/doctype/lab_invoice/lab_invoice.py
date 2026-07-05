@@ -1,14 +1,23 @@
 # Copyright (c) 2026, Ascratech and contributors
 # For license information, please see license.txt
+#
+# GST architecture follows ERPNext / India Compliance pattern:
+#   - GSTIN lives on Address DocType (custom fields added by custom_fields.py)
+#   - billing_address_gstin / gst_category / company_gstin are ALL fetched
+#     from their linked Address documents via Frappe's fetch_from mechanism
+#   - This controller only resolves place_of_supply and picks the right
+#     Sales Taxes and Charges Template — it does NOT re-read GSTIN directly
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import flt as _flt, today
+from frappe.utils import flt as _flt
 
 
 class LabInvoice(Document):
 	def validate(self):
-		self._set_gst_details()
+		self._resolve_company_address()
+		self._set_place_of_supply()
+		self._auto_set_tax_template()
 		self._validate_gstin()
 		self._set_item_amounts()
 		self._apply_corporate_rates()
@@ -16,178 +25,117 @@ class LabInvoice(Document):
 		self._compute_gst()
 		self._compute_doctor_commission()
 		self._update_payment_status()
-
-	def _set_gst_details(self):
-		"""Set GST details from patient/corporate and lab branch"""
-		# Get lab GSTIN from branch
-		if self.branch:
-			branch = frappe.get_cached_doc("Lab Branch", self.branch)
-			self.company_gstin = branch.gstin or ""
+		self.set_status()
+	
+	def on_submit(self):
+		"""Handle invoice submission"""
+		self.set_status(update=True)
+	
+	def on_cancel(self):
+		"""Handle invoice cancellation"""
+		self.set_status(update=True)
+	
+	def set_status(self, update=False):
+		"""Set payment status based on outstanding amount (similar to ERPNext Sales Invoice)"""
+		if self.docstatus == 2:
+			self.status = "Cancelled"
+		elif self.docstatus == 1:
+			outstanding = _flt(self.outstanding_amount, 2)
+			grand_total = _flt(self.grand_total, 2)
+			
+			if outstanding <= 0:
+				self.status = "Paid"
+				self.payment_status = "Paid"
+			elif 0 < outstanding < grand_total:
+				self.status = "Partly Paid"
+				self.payment_status = "Partly Paid"
+			else:
+				self.status = "Unpaid"
+				self.payment_status = "Unpaid"
 		else:
-			self.company_gstin = ""
+			self.status = "Draft"
+			self.payment_status = "Unpaid"
 		
-		# Get patient/corporate GST details
-		if self.corporate_account:
-			# B2B - get from corporate account
-			corp = frappe.get_cached_doc("Corporate Account", self.corporate_account)
-			self.patient_gstin = corp.gstin or ""
-			self.billing_address_gstin = corp.gstin or ""
-			# Set GST category based on GSTIN
-			self.gst_category = self._guess_gst_category(self.patient_gstin)
-		else:
-			# B2C - individual patient
-			self.gst_category = "Unregistered"
-			self.patient_gstin = ""
-			self.billing_address_gstin = ""
-		
-		# Calculate place of supply
-		self.place_of_supply = self._get_place_of_supply()
-		
-		# Determine if interstate
-		self.is_interstate = self._is_interstate()
-		
-		# Set tax category and template
-		self._set_tax_template()
+		if update:
+			frappe.db.set_value("Lab Invoice", self.name, {
+				"status": self.status,
+				"payment_status": self.payment_status
+			}, update_modified=False)
 
-	def _guess_gst_category(self, gstin):
-		"""Guess GST category from GSTIN"""
-		if not gstin or len(gstin) != 15:
-			return "Unregistered"
-		
-		# Check if GSTIN starts with state code
-		if gstin[:2].isdigit():
-			return "Registered Regular"
-		
-		return "Unregistered"
+	# ── Address resolution ─────────────────────────────────────────────────
 
-	def _get_place_of_supply(self):
-		"""Calculate place of supply"""
-		if self.gst_category in ("Overseas", "SEZ"):
-			return "96-Other Countries"
-		
-		# For unregistered, use lab state
-		if self.gst_category == "Unregistered":
-			if self.company_gstin and len(self.company_gstin) >= 2:
-				state_code = self.company_gstin[:2]
-				state_name = self._get_state_name(state_code)
-				return f"{state_code}-{state_name}"
-		
-		# For registered, use customer state
-		if self.patient_gstin and len(self.patient_gstin) >= 2:
-			state_code = self.patient_gstin[:2]
-			state_name = self._get_state_name(state_code)
-			return f"{state_code}-{state_name}"
-		
-		return ""
+	def _resolve_company_address(self):
+		"""
+		Auto-populate company_address from the linked Lab Branch.
+		company_gstin is then fetched automatically by fetch_from on
+		the company_address field (custom field).
+		"""
+		if not self.branch:
+			return
+		branch_address = frappe.db.get_value("Lab Branch", self.branch, "branch_address")
+		if branch_address and not self.get("company_address"):
+			self.company_address = branch_address
 
-	def _get_state_name(self, state_code):
-		"""Get state name from state code"""
-		states = {
-			"09": "Uttar Pradesh",
-			"27": "Maharashtra",
-			"07": "Delhi",
-			"29": "Rajasthan",
-			"05": "Uttarakhand",
-			"10": "Bihar",
-			"32": "Kerala",
-			"33": "Tamil Nadu",
-			"19": "West Bengal",
-			"12": "Arunachal Pradesh",
-			"13": "Assam",
-			"22": "Chhattisgarh",
-			"30": "Goa",
-			"24": "Gujarat",
-			"06": "Haryana",
-			"02": "Himachal Pradesh",
-			"01": "Jammu & Kashmir",
-			"20": "Jharkhand",
-			"31": "Karnataka",
-			"23": "Madhya Pradesh",
-			"16": "Manipur",
-			"14": "Meghalaya",
-			"17": "Mizoram",
-			"15": "Nagaland",
-			"21": "Odisha",
-			"34": "Pondicherry",
-			"03": "Punjab",
-			"08": "Rajasthan",
-			"11": "Sikkim",
-			"36": "Telangana",
-			"37": "Andhra Pradesh",
-			"28": "Andhra Pradesh",
-			"35": "Andaman & Nicobar Islands",
-			"04": "Chandigarh",
-			"26": "Dadra & Nagar Haveli",
-			"25": "Daman & Diu",
-			"31": "Lakshadweep"
-		}
-		return states.get(state_code, "Unknown")
+	# ── Place of Supply ────────────────────────────────────────────────────
 
-	def _is_interstate(self):
-		"""Check if transaction is interstate"""
-		if not self.company_gstin or not self.place_of_supply:
-			return False
-		
-		lab_state = self.company_gstin[:2]
-		supply_state = self.place_of_supply[:2]
-		
-		return lab_state != supply_state
+	def _set_place_of_supply(self):
+		"""
+		Derive place of supply using gst.py helper.
+		Uses billing_address_gstin (fetched from customer_address) and
+		company_gstin (fetched from company_address / branch_address).
+		"""
+		if self.get("place_of_supply"):
+			return  # already set by user or JS
 
-	def _set_tax_template(self):
-		"""Set tax category and template based on GST details"""
-		# Clear existing if GST not applicable
-		if self.gst_category in ("Unregistered", "SEZ", "Overseas"):
-			self.tax_category = ""
+		from arogyapath.arogyapath.utils.gst import get_place_of_supply
+		self.place_of_supply = get_place_of_supply(self)
+
+	# ── Tax Template ───────────────────────────────────────────────────────
+
+	def _auto_set_tax_template(self):
+		"""
+		Auto-select the Sales Taxes and Charges Template only when
+		taxes_and_charges is not already set by the user.
+
+		Mirrors India Compliance's get_tax_template_based_on_category() +
+		get_tax_template() — scoped to Pathology Lab instead of Company.
+		"""
+		from arogyapath.arogyapath.utils.gst import (
+			GST_EXEMPT_CATEGORIES,
+			get_tax_template_for_invoice,
+			populate_taxes_from_template,
+		)
+
+		# GST category is fetched from customer_address via fetch_from.
+		# Fall back to Unregistered if not yet populated.
+		gst_category = (self.get("gst_category") or "Unregistered").strip()
+
+		if gst_category in GST_EXEMPT_CATEGORIES:
+			# Bill of Supply — no tax template needed
 			self.taxes_and_charges = ""
+			self.taxes = []
 			return
-		
-		# Get default pathology lab
-		from arogyapath.arogyapath.seed_chart_of_accounts import get_default_lab
-		default_lab = get_default_lab()
-		if not default_lab:
-			return
-		
-		# Try to find template by tax category
-		if self.is_interstate:
-			category_name = "Out of State GST"
-		else:
-			category_name = "In State GST"
-		
-		# Get tax category
-		tax_category = frappe.db.exists("Tax Category", {
-			"category_name": category_name,
-			"is_inter_state": 1 if self.is_interstate else 0,
-			"disabled": 0
-		})
-		
-		if tax_category:
-			self.tax_category = tax_category
-			# Get template for this category
-			template = frappe.db.exists("Sales Taxes and Charges Template", {
-				"pathology_lab": default_lab,
-				"tax_category": tax_category,
-				"disabled": 0
-			})
-			if template:
-				self.taxes_and_charges = template
-		else:
-			# Fallback to default template
-			template = frappe.db.exists("Sales Taxes and Charges Template", {
-				"pathology_lab": default_lab,
-				"is_default": 1,
-				"disabled": 0
-			})
-			if template:
-				self.taxes_and_charges = template
+
+		# Only auto-fill if not already set
+		if not self.get("taxes_and_charges"):
+			self.taxes_and_charges = get_tax_template_for_invoice(self)
+
+		# Always (re)populate taxes rows from template
+		if self.get("taxes_and_charges"):
+			populate_taxes_from_template(self)
+
+	# ── GSTIN validation ───────────────────────────────────────────────────
 
 	def _validate_gstin(self):
-		"""Validate patient GSTIN format if provided."""
+		"""
+		Validate GSTINs that are now stored on Address and fetched here.
+		billing_address_gstin comes from customer_address.gstin via fetch_from.
+		company_gstin comes from company_address.gstin via fetch_from.
+		"""
 		from arogyapath.arogyapath.utils.gst import validate_gstin
 
-		validate_gstin(self.patient_gstin, "Patient GSTIN")
-		if self.branch:
-			lab_gstin = frappe.db.get_value("Lab Branch", self.branch, "gstin")
-			validate_gstin(lab_gstin, "Lab GSTIN")
+		validate_gstin(self.get("billing_address_gstin") or "", "Billing GSTIN")
+		validate_gstin(self.get("company_gstin") or "", "Lab GSTIN")
 
 	def _set_item_amounts(self):
 		"""Compute rate = amount for each line item (lab tests are qty 1)."""

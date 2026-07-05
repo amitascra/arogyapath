@@ -284,7 +284,7 @@
  "links": [],
  "modified": "2026-03-28 14:45:00.000000",
  "modified_by": "Administrator",
- "module": "arogyapath",
+ "module": "ArogyaPath",
  "name": "Purchase Invoice",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",

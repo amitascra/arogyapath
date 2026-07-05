@@ -1,0 +1,1 @@
+A comprehensive Pathology Lab Management System built on Frappe Framework - Complete lab workflow, GST compliance, quality control, and financial management for India

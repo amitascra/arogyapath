@@ -1,7 +1,6 @@
 {
  "actions": [],
- "allow_rename": 0,
- "creation": "2026-03-28 15:00:00.000000",
+ "creation": "2026-03-29 17:00:00.000000",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -10,7 +9,10 @@
   "account_head",
   "description",
   "rate",
-  "tax_amount"
+  "gst_tax_type",
+  "column_break_1",
+  "tax_amount",
+  "total"
  ],
  "fields": [
   {
@@ -18,7 +20,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "On Net Total\nOn Previous Row Total\nActual",
+   "options": "Actual\nOn Net Total\nOn Previous Row Amount\nOn Previous Row Total",
    "reqd": 1
   },
   {
@@ -26,8 +28,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Account Head",
-   "reqd": 1,
-   "description": "e.g., Input CGST, Input SGST, Input IGST"
+   "reqd": 1
   },
   {
    "fieldname": "description",
@@ -36,30 +37,48 @@
    "label": "Description"
   },
   {
+   "default": "0",
    "fieldname": "rate",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Rate (%)",
-   "precision": "2"
+   "label": "Rate (%)"
   },
   {
+   "fieldname": "gst_tax_type",
+   "fieldtype": "Select",
+   "label": "GST Tax Type",
+   "options": "\ncgst\nsgst\nigst\ncess",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
    "fieldname": "tax_amount",
    "fieldtype": "Currency",
    "label": "Tax Amount",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "label": "Total",
+   "read_only": 1
   }
  ],
- "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-03-28 15:00:00.000000",
+ "modified": "2026-03-29 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "ArogyaPath",
- "name": "Purchase Taxes and Charges",
+ "name": "Lab Tax Row",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
- "sort_order": "DESC",
+ "sort_order": "ASC",
  "states": [],
- "track_changes": 1
+ "track_changes": 0
 }

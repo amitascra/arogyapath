@@ -78,7 +78,6 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Branch",
-   "link_filters": "[[\"Lab Branch\",\"pathology_lab\",\"=\",\"value\"]]",
    "options": "Lab Branch",
    "reqd": 1
   },
@@ -286,7 +285,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-28 19:50:02.887768",
+ "modified": "2026-03-30 00:05:12.562976",
  "modified_by": "Administrator",
  "module": "ArogyaPath",
  "name": "Employee",

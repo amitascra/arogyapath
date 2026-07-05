@@ -1,8 +1,7 @@
 {
  "actions": [],
- "allow_rename": 0,
  "autoname": "naming_series:",
- "creation": "2026-03-27 17:00:00.000000",
+ "creation": "2026-03-27 17:00:00",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -14,23 +13,16 @@
   "invoice_date",
   "column_break_1",
   "branch",
+  "pathology_lab",
   "referred_by",
   "corporate_account",
   "discount_scheme",
   "status",
-  "section_break_gst",
-  "gst_category",
-  "patient_gstin",
-  "billing_address_gstin",
-  "column_break_gst",
-  "company_gstin",
-  "place_of_supply",
-  "is_interstate",
-  "section_break_tax_template",
-  "tax_category",
-  "taxes_and_charges",
   "section_break_3",
   "items",
+  "section_break_taxes_header",
+  "tax_category",
+  "taxes_and_charges",
   "section_break_taxes",
   "taxes",
   "section_break_4",
@@ -48,7 +40,26 @@
   "payment_status",
   "section_break_8",
   "commission_amount",
-  "commission_settled"
+  "commission_settled",
+  "contact_and_address_tab",
+  "billing_address_section",
+  "customer_address",
+  "address_display",
+  "billing_address_gstin",
+  "gst_category",
+  "place_of_supply",
+  "column_break_qnaf",
+  "contact_person",
+  "contact_display",
+  "contact_mobile",
+  "contact_email",
+  "amended_from",
+  "pathology_lab_address_section",
+  "company_address",
+  "company_gstin",
+  "company_address_display",
+  "column_break_svne",
+  "company_contact_person"
  ],
  "fields": [
   {
@@ -104,6 +115,14 @@
    "read_only": 1
   },
   {
+   "fetch_from": "branch.pathology_lab",
+   "fieldname": "pathology_lab",
+   "fieldtype": "Link",
+   "label": "Pathology Lab",
+   "options": "Pathology Lab",
+   "read_only": 1
+  },
+  {
    "fetch_from": "lab_order.referred_by",
    "fieldname": "referred_by",
    "fieldtype": "Link",
@@ -111,11 +130,11 @@
    "options": "Doctor"
   },
   {
+   "description": "If B2B billing",
    "fieldname": "corporate_account",
    "fieldtype": "Link",
    "label": "Corporate Account",
-   "options": "Corporate Account",
-   "description": "If B2B billing"
+   "options": "Corporate Account"
   },
   {
    "fieldname": "discount_scheme",
@@ -132,76 +151,70 @@
    "options": "Draft\nUnpaid\nPartially Paid\nPaid\nCancelled"
   },
   {
-   "fieldname": "section_break_gst",
-   "fieldtype": "Section Break",
-   "label": "GST Details"
+   "description": "Patient or Corporate billing address",
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "label": "Customer Address",
+   "options": "Address"
   },
   {
-   "default": "Unregistered",
-   "fieldname": "gst_category",
-   "fieldtype": "Select",
-   "label": "GST Category",
-   "options": "Unregistered\nRegistered Regular\nRegistered Composition\nSEZ\nOverseas\nDeemed Export",
-   "description": "Determines GST applicability"
-  },
-  {
-   "fieldname": "patient_gstin",
-   "fieldtype": "Data",
-   "label": "Patient/Company GSTIN",
-   "description": "Required for B2B GST invoice"
-  },
-  {
+   "fetch_from": "customer_address.gstin",
    "fieldname": "billing_address_gstin",
    "fieldtype": "Data",
    "label": "Billing Address GSTIN",
-   "read_only": 1,
-   "description": "Fetched from patient/corporate address"
+   "length": 15,
+   "print_hide": 1,
+   "read_only": 1
   },
   {
-   "fieldname": "column_break_gst",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "company_gstin",
+   "fetch_from": "customer_address.gst_category",
+   "fieldname": "gst_category",
    "fieldtype": "Data",
-   "label": "Lab GSTIN",
-   "read_only": 1,
-   "description": "Fetched from lab branch"
+   "label": "GST Category",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fieldname": "place_of_supply",
-   "fieldtype": "Data",
+   "fieldtype": "Autocomplete",
    "label": "Place of Supply",
-   "read_only": 1,
-   "description": "Auto-calculated from address"
+   "print_hide": 1
   },
   {
-   "default": "0",
-   "fieldname": "is_interstate",
-   "fieldtype": "Check",
-   "label": "Is Interstate",
-   "read_only": 1,
-   "description": "Auto-calculated from GSTINs"
+   "description": "Pathology Lab billing address",
+   "fieldname": "company_address",
+   "fieldtype": "Link",
+   "label": "Pathology Lab Address",
+   "options": "Address",
+   "read_only": 1
   },
   {
-   "fieldname": "section_break_tax_template",
+   "fetch_from": "company_address.gstin",
+   "fieldname": "company_gstin",
+   "fieldtype": "Data",
+   "label": "Pathology Lab GSTIN",
+   "length": 15,
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_taxes_header",
    "fieldtype": "Section Break",
-   "label": "Tax Template"
+   "label": "Taxes and Charges"
   },
   {
    "fieldname": "tax_category",
    "fieldtype": "Link",
    "label": "Tax Category",
-   "options": "Tax Category",
-   "read_only": 1,
-   "description": "Auto-set based on GST category"
+   "options": "Lab Tax Category",
+   "print_hide": 1
   },
   {
    "fieldname": "taxes_and_charges",
    "fieldtype": "Link",
    "label": "Taxes and Charges Template",
-   "options": "Sales Taxes and Charges Template",
-   "description": "Tax template for GST calculation"
+   "options": "Lab Tax Template",
+   "print_hide": 1
   },
   {
    "fieldname": "section_break_3",
@@ -217,14 +230,13 @@
   },
   {
    "fieldname": "section_break_taxes",
-   "fieldtype": "Section Break",
-   "label": "Tax Details"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "taxes",
    "fieldtype": "Table",
    "label": "Taxes",
-   "options": "Sales Taxes and Charges"
+   "options": "Lab Tax Row"
   },
   {
    "fieldname": "section_break_4",
@@ -322,12 +334,91 @@
    "fieldtype": "Check",
    "label": "Commission Settled",
    "read_only": 1
+  },
+  {
+   "fieldname": "contact_and_address_tab",
+   "fieldtype": "Tab Break",
+   "label": "Address & Contact"
+  },
+  {
+   "fieldname": "billing_address_section",
+   "fieldtype": "Section Break",
+   "label": "Billing Address"
+  },
+  {
+   "fieldname": "address_display",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qnaf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "label": "Contact Person",
+   "options": "Contact",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "contact_display",
+   "fieldtype": "Small Text",
+   "label": "contact",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Small Text",
+   "label": "Mobile No",
+   "options": "Phone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Lab Invoice",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "pathology_lab_address_section",
+   "fieldtype": "Section Break",
+   "label": "Pathology Lab Address"
+  },
+  {
+   "fieldname": "company_address_display",
+   "fieldtype": "Small Text",
+   "label": "Pathology Lab"
+  },
+  {
+   "fieldname": "column_break_svne",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company_contact_person",
+   "fieldtype": "Link",
+   "label": "Pathology Contact Address",
+   "options": "Contact"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-27 17:00:00.000000",
+ "modified": "2026-03-29 18:53:44.428662",
  "modified_by": "Administrator",
  "module": "ArogyaPath",
  "name": "Lab Invoice",
@@ -361,6 +452,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "patient,patient_name,branch,status",
  "sort_field": "modified",
  "sort_order": "DESC",

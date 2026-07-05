@@ -2,18 +2,16 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:title",
- "creation": "2026-03-28 15:00:00.000000",
+ "creation": "2026-03-29 17:00:00.000000",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "title",
   "pathology_lab",
-  "column_break_1",
   "tax_category",
-  "is_default",
+  "column_break_1",
   "disabled",
-  "section_break_1",
+  "section_break_taxes",
   "taxes"
  ],
  "fields": [
@@ -23,31 +21,25 @@
    "in_list_view": 1,
    "label": "Title",
    "reqd": 1,
-   "unique": 1,
-   "description": "e.g., GST 18% Intrastate, GST 18% Interstate"
+   "unique": 1
   },
   {
    "fieldname": "pathology_lab",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Pathology Lab",
-   "options": "Pathology Lab",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_1",
-   "fieldtype": "Column Break"
+   "options": "Pathology Lab"
   },
   {
    "fieldname": "tax_category",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Tax Category",
-   "options": "Tax Category"
+   "options": "Lab Tax Category"
   },
   {
-   "default": "0",
-   "fieldname": "is_default",
-   "fieldtype": "Check",
-   "label": "Is Default"
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "0",
@@ -56,37 +48,32 @@
    "label": "Disabled"
   },
   {
-   "fieldname": "section_break_1",
+   "fieldname": "section_break_taxes",
    "fieldtype": "Section Break",
-   "label": "Tax Details"
+   "label": "Tax Rows"
   },
   {
    "fieldname": "taxes",
    "fieldtype": "Table",
    "label": "Taxes",
-   "options": "Sales Taxes and Charges",
+   "options": "Lab Tax Row",
    "reqd": 1
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-28 15:00:00.000000",
+ "modified": "2026-03-29 17:00:00.000000",
  "modified_by": "Administrator",
- "module": "arogyapath",
- "name": "Sales Taxes and Charges Template",
+ "module": "ArogyaPath",
+ "name": "Lab Tax Template",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "Lab Admin",
-   "share": 1,
    "write": 1
   },
   {
@@ -94,9 +81,10 @@
    "role": "Lab Manager"
   }
  ],
- "quick_entry": 1,
+ "search_fields": "title,pathology_lab,tax_category",
  "sort_field": "modified",
- "sort_order": "DESC",
+ "sort_order": "ASC",
  "states": [],
- "track_changes": 1
+ "title_field": "title",
+ "track_changes": 0
 }

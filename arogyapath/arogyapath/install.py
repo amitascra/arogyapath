@@ -3,14 +3,20 @@ from frappe import _
 
 
 def after_install():
-	"""Run after app installation — creates roles and role profiles"""
+	"""Run after app installation — creates roles, role profiles, and custom fields"""
 	create_custom_roles()
 	create_default_role_profiles()
+	# Create GST custom fields (India Compliance pattern)
+	from arogyapath.arogyapath.utils.custom_fields import setup_custom_fields
+	setup_custom_fields()
 	frappe.db.commit()
 
 
 def after_migrate():
 	"""Run after migration — DocTypes are fully synced, safe to insert demo data"""
+	# Re-create/update GST custom fields on every migration (India Compliance pattern)
+	from arogyapath.arogyapath.utils.custom_fields import setup_custom_fields
+	setup_custom_fields()
 	create_default_lab_settings()
 	seed_lab_test_uom()
 	# Phase 9 — Test Catalog seed (idempotent)
@@ -24,12 +30,16 @@ def after_migrate():
 	seed_sample_types()
 	seed_lab_tests()
 	seed_lab_test_panels()
-	# Phase 10D — Tax Templates seed (idempotent)
+	# Phase 10D — Tax Categories + Templates seed (idempotent)
+	# seed_gst_tax_categories must run AFTER setup_custom_fields so that
+	# is_inter_state / is_reverse_charge columns exist on Tax Category
 	from arogyapath.arogyapath.seed_tax_templates import (
+		seed_gst_tax_categories,
 		seed_tax_withholding_categories,
 		seed_sales_tax_templates,
 		seed_purchase_tax_templates,
 	)
+	seed_gst_tax_categories()
 	seed_tax_withholding_categories()
 	seed_sales_tax_templates()
 	seed_purchase_tax_templates()

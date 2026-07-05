@@ -43,7 +43,9 @@ required_apps = ["frappe", "payments"]
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Address": "public/js/address.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -91,11 +93,12 @@ jinja = {
 
 # before_install = "arogyapath.arogyapath.install.before_install"
 after_install = "arogyapath.arogyapath.install.after_install"
-# after_migrate = "arogyapath.arogyapath.install.after_migrate"
+after_migrate = "arogyapath.arogyapath.install.after_migrate"
 
 # Fixtures
 # --------
 # Workspace is exported as a fixture — roles/role profiles are created in install.py
+# Custom Fields are created programmatically via setup_custom_fields() (India Compliance pattern)
 fixtures = [
 	{
 		"dt": "Workspace",
@@ -158,7 +161,14 @@ fixtures = [
 # NOTE: Lab Order, Lab Result, Lab Invoice, Reagent Lot all have logic in their
 # own DocType controllers (doctype/*/py). The controllers/ folder is reserved
 # for cross-cutting hooks that augment behaviour without replacing the controller.
-doc_events = {}
+doc_events = {
+	"Address": {
+		"validate": "arogyapath.arogyapath.overrides.address.validate",
+	},
+	"Lab Invoice": {
+		"validate": "arogyapath.arogyapath.controllers.lab_invoice.validate",
+	},
+}
 
 # Scheduled Tasks
 # ---------------

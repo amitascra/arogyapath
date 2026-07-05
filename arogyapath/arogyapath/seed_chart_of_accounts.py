@@ -78,24 +78,23 @@ def seed_chart_of_accounts(pathology_lab=None):
 		{"account_name": "Input Cess", "root_type": "Expense", "parent_account": "Input Tax Credit", "account_type": "Tax"},
 	]
 	
+	inserted = 0
 	for acc_data in accounts:
-		# Add pathology_lab to account data
 		acc_data["pathology_lab"] = pathology_lab
-		
-		# Check if account exists for this pathology lab
-		existing = frappe.db.exists("Account", {
-			"account_name": acc_data["account_name"],
-			"pathology_lab": pathology_lab
-		})
-		
-		if not existing:
-			acc = frappe.new_doc("Account")
-			acc.update(acc_data)
+
+		if frappe.db.exists("Account", acc_data["account_name"]):
+			continue
+
+		acc = frappe.new_doc("Account")
+		acc.update(acc_data)
+		try:
 			acc.insert(ignore_permissions=True)
-			frappe.logger().info(f"Created Account: {acc.account_name} for {pathology_lab}")
-		else:
-			frappe.logger().info(f"Account already exists: {acc_data['account_name']} for {pathology_lab}")
-	
+			inserted += 1
+		except frappe.DuplicateEntryError:
+			pass
+
+	if inserted:
+		frappe.logger().info(f"ArogyaPath: Seeded {inserted} Chart of Accounts entries for '{pathology_lab}'")
 	frappe.db.commit()
 
 
